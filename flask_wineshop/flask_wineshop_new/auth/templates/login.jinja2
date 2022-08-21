@@ -1,0 +1,49 @@
+{% extends "layout.jinja2" %}
+
+{% block title %}Register{% endblock %}
+
+{% block pagestyles %}
+    {% assets "auth_style_bundle" %}
+        <link href="{{ ASSET_URL }}" rel="stylesheet" type="text/css">
+    {% endassets %}
+{% endblock %}
+
+{% block content %}
+    <div class="w-full min-h-screen bg-gray-50 flex flex-col sm:justify-center items-center pt-6 sm:pt-0">
+        <div class="w-full sm:max-w-md p-5 mx-auto">
+
+            <h2 class="mb-12 text-center text-5xl font-extrabold">Sign In</h2>
+            <form action="{{ url_for('auth.login') }}" method="POST" autocomplete="off">
+                {{ form.hidden_tag() }}
+
+                <fieldset class="username">
+                    {{ form.username.label(class="text-black") }}
+                    {{ form.username(placeholder='John Smith') }}
+                    {% if form.username.errors %}
+                        <ul class="errors">
+                            {% for error in form.username.errors %}
+                                <li><strong>Error:</strong> {{ error }}{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </fieldset>
+                <fieldset class="password">
+                    {{ form.password.label(class="text-black") }}
+                    {{ form.password }}
+                    {% if form.password.errors %}
+                        <ul class="errors">
+                            {% for error in form.password.errors %}
+                                <li>{{ error }}</li>{% endfor %}
+                        </ul>
+                    {% endif %}
+                </fieldset>
+            <br>
+                <div class="submit-button">
+                    {% include '_button-submit.jinja2' %}
+                </div>
+            </form>
+        </div>
+
+    </div>
+{% endblock %}
+

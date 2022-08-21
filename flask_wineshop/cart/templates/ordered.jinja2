@@ -1,0 +1,44 @@
+{% extends "layout.jinja2" %}
+
+{% block title %}Ordered Page{% endblock %}
+
+{% block content %}
+    <div class="bg-white min-h-screen">
+
+        <div class="container mt-5 mb-5">
+            <div class="row flex justify-center">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="text-left logo p-2 px-5"></div>
+                        <div class="invoice p-5">
+                            <span>Thank You, {{ fullname }}. Your order has been confirmed!</span>
+                            <div class="payment border-top mt-9 mb-9 border-bottom table-responsive">
+                                <table class="table table-borderless">
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="py-2"><span
+                                                    class="d-block text-muted">Order ID:</span> {{ order_id }}</div>
+                                        </td>
+                                    <tr>
+                                        <td>
+                                            <div class="py-2"><span class="d-block text-muted">Payment</span>
+                                                ${{ order_total }}</div>
+                                        </td>
+                                    <tr>
+                                        <td>
+                                            <div class="py-2">
+                                                {% include '_button-continue-shopping.jinja2' %}
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,218 @@
+//@use 'global';
+//@use './themes.scss';
+//@use './_typography.scss';
+//@use './properties.scss';
+//
+//
+///********** VIEWPORTS ***********/
+//
+///********** GENERAL ************/
+//
+//.filter-white {
+//  filter: invert(99%) sepia(86%) saturate(0%) hue-rotate(40deg) brightness(111%) contrast(101%);
+//}
+//
+//
+///********** Navbar ************/
+//
+//nav {
+//  background: themes.$mid-gray;
+//  font-family: typography.$roboto;
+//  text-transform: uppercase;
+//
+//  a {
+//
+//    span {
+//      font-family: typography.$playfair;
+//      color: white;
+//      font-weight: 400;
+//      font-size: 44px;
+//    }
+//  }
+//
+//  ul {
+//    font-size: 0;
+//    margin: 0;
+//    padding: 0;
+//
+//    li {
+//
+//      a {
+//        color: white;
+//        display: block;
+//        font-size: 16px;
+//        padding: 15px 14px;
+//
+//        &:hover {
+//          background: themes.$dark-gray;
+//          color: orange;
+//        }
+//      }
+//
+//      ul {
+//        display: none;
+//        position: absolute;
+//        width: 250px;
+//
+//        .left {
+//          float: left;
+//        }
+//
+//        li {
+//
+//          a {
+//            background: themes.$dark-gray;
+//          }
+//        }
+//      }
+//    }
+//  }
+//}
+//
+///********** Footer ************/
+//
+//footer {
+//  background: themes.$dark-gray;
+//
+//  a {
+//    color: white;
+//
+//    &:hover {
+//      color: themes.$red;
+//    }
+//  }
+//}
+//
+////
+////.site-footer {
+////    background-color: global.$dark-gray;
+////    padding: 45px 0 20px;
+////    font-size: 15px;
+////    line-height: 24px;
+////    color: global.$mid-gray;
+////
+////    hr {
+////        border-top-color: #bbb;
+////        opacity: 0.5;
+////    }
+////    hr.small {
+////        margin: 20px 0;
+////    }
+////
+////    h6 {
+////        color: #fff;
+////        font-size: 16px;
+////        text-transform: uppercase;
+////        margin-top: 5px;
+////        letter-spacing: 2px;
+////    }
+////
+////    a {
+////        color: global.$mid-gray;;
+////
+////        &:hover {
+////            color: orange;
+////        }
+////    }
+////
+////    .footer-links {
+////        padding-left: 0;
+////        list-style: none;
+////    }
+////
+////    li {
+////        display: inline-block;
+////    }
+////
+////        .social-icons {
+////            text-align: right;
+////
+////            a {
+////                width: 40px;
+////                height: 40px;
+////                line-height: 40px;
+////                margin-left: 6px;
+////                margin-right: 0;
+////                border-radius:100%;
+////                background-color: #33353d;
+////            }
+////        }
+////    }
+////
+////    .copyright-text {
+////        margin: 0;
+////    }
+////
+////    @media (max-width:991px) {
+////        .site-footer [class^=col-]
+////        {
+////        margin-bottom:30px
+////        }
+////    }
+////
+////    @media (max-width:767px) {
+////        .site-footer {
+////            padding-bottom: 0;
+////
+////            .copyright-text,.site-footer .social-icons {
+////            text-align: center
+////            }
+////        }
+////    }
+////
+////    .social-icons {
+////        padding-left: 0;
+////        margin-bottom: 0;
+////        list-style: none;
+////
+////        li {
+////            display: inline-block;
+////            margin-bottom: 4px;
+////
+////            .title {
+////                margin-right:15px;
+////                text-transform:uppercase;
+////                color:#96a2b2;
+////                font-weight:700;
+////                font-size:13px
+////            }
+////
+////            a {
+////                background-color :#eceeef;
+////                color: #818a91;
+////                font-size: 16px;
+////                display: inline-block;
+////                line-height: 44px;
+////                width: 44px;
+////                height: 44px;
+////                text-align: center;
+////                margin-right: 8px;
+////                border-radius: 100%;
+////                -webkit-transition: all .2s linear;
+////                -o-transition:all .2s linear;
+////                transition:all .2s linear;
+////
+////                &:hover {
+////                    color: orange;
+////                }
+////            }
+////
+////            .size-sm a {
+////                line-height:34px;
+////                height:34px;
+////                width:34px;
+////                font-size:14px
+////            }
+////        }
+////    }
+////
+////    @media (max-width:767px) {
+////        .social-icons {
+////            .title {
+////                display: block;
+////                margin-right: 0;
+////                font-weight: 600;
+////            }
+////        }
+////    }
+////}

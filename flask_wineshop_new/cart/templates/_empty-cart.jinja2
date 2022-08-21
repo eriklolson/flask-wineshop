@@ -1,0 +1,16 @@
+<div class="bg-white min-h-screen">
+    <div class="flex justify-center">
+        <section class="hero bg-center h-56 text-neutral-content w-11/12"
+        {#             style="background-image: url('{{ url_for('.static', filename='img/order-page-wine-bottles.jpg') }}');">#}
+        <div class="hero-overlay bg-opacity-50"></div>
+        <div class="grid grid-row-2 h-56 py-9  gap-4 mt-9 mb-9 justify-items-center items-center">
+            <div class="self-center">
+                <p>Your cart is currently empty</p>
+            </div>
+            <div class="self-center">
+                {% include '_button-continue-shopping.jinja2' %}
+            </div>
+        </div>
+        </section>
+    </div>
+</div>

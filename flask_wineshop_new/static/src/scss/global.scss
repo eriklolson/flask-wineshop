@@ -1,0 +1,152 @@
+@use './themes.scss';
+@use './typography.scss';
+@use './properties.scss';
+
+
+/******** General variables ********/
+
+.filter-white {
+  filter: invert(99%) sepia(86%) saturate(0%) hue-rotate(40deg) brightness(111%) contrast(101%);
+}
+
+
+@mixin selection {
+  color: themes.$red;
+  text-decoration: none;
+  transition: color .3s;
+  background: transparent;
+}
+
+a {
+  @include selection;
+}
+
+/********** DOM tree ************/
+
+:root {
+  font-size: 62.5%;
+
+  body {
+    font-size: 1.6rem;
+    font-family: typography.$roboto;
+    margin: 0;
+  }
+}
+
+header {
+  background-color: themes.$dark-gray;
+  #main-nav {
+    min-height: 6.5rem;
+    color: white;
+
+    #site-title {
+      margin-right: auto;
+      text-transform: uppercase;
+
+      a {
+        @include selection;
+      }
+    }
+
+    a {
+      #logo {
+        margin-left: 1rem;
+      }
+
+      span {
+        font-family: typography.$playfair;
+        color: white;
+        font-weight: 400;
+        font-size: 3rem;
+      }
+    }
+
+    #toggle-block {
+      button {
+        background-color: white;
+      }
+    }
+
+    ul {
+      li {
+        a {
+          color: white;
+          display: block;
+          padding: 15px 14px;
+          text-transform: uppercase;
+
+          &:hover {
+            color: themes.$orange;
+          }
+        }
+
+        ul {
+          display: none;
+          position: absolute;
+          width: 250px;
+
+          .left {
+            float: left;
+          }
+
+          &:hover {
+            color: orange;
+          }
+
+          li {
+            a {
+              background: themes.$dark-gray;
+
+              &:hover {
+                color: themes.$orange;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/********** Flash Messages ************/
+
+.success {
+  background-color: #BBF7D0;
+}
+.error {
+  background-color: #F87171;
+  color: white;
+}
+.notice {
+  background-color: #64748B;
+  color: white;
+}
+//footer {
+//  background: themes.$dark-gray;
+//
+//  a {
+//    color: white;
+//
+//    &:hover {
+//      color: themes.$red;
+//    }
+//  }
+//}
+/********** Site footer ************/
+footer {
+  background-color: themes.$dark-gray;
+
+  ul {
+    columns: 2;
+    -webkit-columns: 2;
+    -moz-columns: 2;
+
+    a {
+      color: white;
+
+      &:hover {
+        color: themes.$orange;
+      }
+    }
+  }
+}

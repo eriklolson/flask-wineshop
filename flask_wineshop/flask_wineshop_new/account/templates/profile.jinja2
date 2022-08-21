@@ -1,0 +1,90 @@
+{% extends "layout.jinja2" %}
+
+{% block content %}
+
+<link href="{{ url_for('account.static', filename='css/account.css') }}" rel="stylesheet">
+
+
+{#    <div class="container mx-auto my-5 p-5">#}
+        <div class="container mx-auto my-5  w-11/12">
+        <div class="md:flex no-wrap md:-mx-2 ">
+            <!-- Left Side -->
+            <div class="w-full md:w-3/12 md:mx-2">
+                <!-- Profile Card -->
+                <div class="bg-white p-3 border-t-4 border-red-600">
+                    <div class="image overflow-hidden">
+                        <img class="h-auto w-full mx-auto"
+                        src="{{ url_for('static', filename='svg/user_icon.svg') }}"
+                            alt="">
+                    </div>
+{#                    <h1 class="text-gray-900 font-bold text-xl leading-8 my-1">{{  current_user.username }}</h1>#}
+                    <ul
+                        class="bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-3 divide-y rounded shadow-sm">
+                        <li class="flex items-center py-3">
+                            <span>Status</span>
+                            <span class="ml-auto"><span
+                                    class="bg-red-500 py-1 px-2 rounded text-white text-lg">Active</span></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Right Side -->
+            <div class="w-full md:w-9/12 mx-2 h-64">
+                <!-- Profile tab -->
+                <!-- About Section -->
+                <div class="bg-white p-3 shadow-sm rounded-sm">
+                    <div class="flex items-center space-x-2  text-gray-900 leading-8">
+                        <span class="tracking-wide">About</span>
+                    </div>
+                    <div class="text-gray-700">
+                        <div class="grid md:grid-cols-1 text-lg">
+
+                            <div class="grid grid-cols-2">
+                                <div class="px-4 py-2 ">Username:</div>
+                                <div class="px-4 py-2">{{  current_user.username }}</div>
+                            </div>
+{#                            <div class="grid grid-cols-2">#}
+{#                                <div class="px-4 py-2 ">Fullname</div>#}
+{#                                <div class="px-4 py-2">{{  current_user.username }}</div>#}
+{#                            </div>#}
+                               <div class="grid grid-cols-2">
+                                <div class="px-4 py-2">User ID:</div>
+                                <div class="px-4 py-2">
+                                    <a class="text-blue-800">{{  current_user.id }}</a>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2">
+                                <div class="px-4 py-2 ">Email:</div>
+                                <div class="px-4 py-2">
+                                    <a class="text-blue-800">{{  current_user.email }}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End of about section -->
+                <div class="my-4"></div>
+                <!-- Experience and education -->
+                <div class="bg-white p-3 shadow-sm rounded-sm">
+                    <div class="grid grid-cols-2">
+                        <div>
+                            <div class="flex items-center space-x-2  text-gray-900 leading-8 mb-3">
+                                <span class="tracking-wide">Profile Links</span>
+                            </div>
+                            <ul class="list-inside space-y-2">
+                                <li>
+                                    <a href="{{ url_for('account.transactions', username=current_user.username) }}" class="text-red-700">Order History</a>
+                                </li>
+{#                                <li>#}
+{#                                    <a class="text-red-700">Edit Profile</a>#}
+{#                                </li>#}
+                            </ul>
+                        </div>
+
+                </div>
+                <!-- End of profile tab -->
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

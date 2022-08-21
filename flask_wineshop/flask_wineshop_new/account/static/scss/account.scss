@@ -1,0 +1,24 @@
+@import "https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap";
+h1 {
+	font-family: "double-pica","Georgia",Times,serif;
+	text-align: center;
+	color: white;
+}
+body {
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-attachment: fixed;
+	background-size: 70% 70%;
+}
+span {
+	color: white;
+}
+a {
+	&:hover {
+		color: #972f1b;
+		font-family: Franklin Gothic URW;
+	}
+	color: #972F1B;
+	font-size: 30px;
+	font-family: Franklin Gothic URW;
+}

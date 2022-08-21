@@ -1,0 +1,50 @@
+name: default
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - anaconda-client
+  - anaconda-project
+  - conda
+  - conda-pack
+  - python=3.9.7
+  - conda-env
+  - conda-build
+  - conda-verify
+  - _ipyw_jlab_nb_ext_conf
+  - anaconda==2021.11=py39_0
+  - anaconda-navigator==2.1.2
+  - navigator-updater
+  - email_validator
+  - flask
+  - flask-assets
+  - flask-babelex
+  - flask-caching
+  - flask-login
+  - flask-paginate
+  - flask-rest-jsonapi
+  - flask-script
+  - flask-security
+  - flask-sqlalchemy
+  - flask-wtf
+  - git
+  - gunicorn
+  - jinja2
+  - json5
+  - jsonschema
+  - jupyterlab
+  - marshmallow-jsonapi
+  - psycopg2 >= 2.8.6
+  - python-dotenv
+  - redis-py
+  - sqlalchemy-utils
+  - validators
+  - wtforms
+  - wtforms-alchemy
+  - wtforms-components
+  - pip:
+    - Flask-Session
+    - sqlalchemy-jdbcapi
+    - sqlathanor
+    - supervisord-dependent-startup
+prefix: /home/erik/Workspace/Fullstack_Project/flask-wineshop/envs/default

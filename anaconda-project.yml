@@ -1,0 +1,68 @@
+name: flask-wineshop
+description: e-commerce project
+
+commands:
+  flask:
+    description: run Flask app
+    unix: python ${PROJECT_DIR}/wsgi.py
+    windows: python %PROJECT_DIR%\wsgi.py
+    supports_http_options: true
+    env_spec: default
+
+
+channels:
+- conda-forge
+- defaults
+- bioconda
+- anaconda
+- judowill
+platforms:
+- linux-64
+- win-64
+
+
+env_specs:
+  default:
+    description: default environment spec for Flask app
+    packages:
+    - anaconda-client
+    - anaconda-project
+    - arrow
+    - conda-pack
+    - cssmin
+    - email_validator
+    - flask
+    - flask-assets
+    - flask-babelex
+    - flask-caching
+    - flask-login
+    - flask-migrate
+    - flask-paginate
+    - flask-rest-jsonapi
+    - flask-script
+    - flask-security
+    - flask-sqlalchemy
+    - flask-wtf
+    - git
+    - gitflow
+    - jinja2
+    - jsmin
+    - json5
+    - jsonschema
+    - jupyterlab
+    - marshmallow-jsonapi
+    - pip
+    - psycopg2 >= 2.8.6
+    - python == 3.9.7
+    - python-dotenv
+    - redis-py
+    - sqlalchemy-utils
+    - validators
+    - wtforms
+    - wtforms-alchemy
+    - wtforms-components
+    - pip:
+      - Flask-Session
+      - sqlathanor
+packages:
+- testbook

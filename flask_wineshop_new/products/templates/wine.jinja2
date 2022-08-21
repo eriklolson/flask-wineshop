@@ -1,0 +1,101 @@
+{% extends "layout.jinja2" %}
+
+{% block content %}
+
+    <div class="flex justify-center w-full border mt-0">
+        <div class="container w-11/12 flex flex-col md:flex-row">
+            {% include "_sidebar.jinja2" %}
+            <section class="min-h-screen md:flex-grow md:w-auto">
+                <div class="container">
+                    <div class="grid grid-cols-1 md:grid-cols-2 p-5 gap-3">
+                        {% for bottle in bottles %}
+                            <div class="rounded-lg shadow-lg bg-white text-center justify-center max-w-sm">
+
+                                <a href="#item{{ bottle.id }}" rel="modal:open"
+                                   class="w-full bg-white px-4 py-2 border border-transparent rounded-md flex
+                            items-center justify-center text-base font-medium text-white hover:bg-indigo-700
+                            focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:w-auto sm:inline-flex">
+                                    <img id="card-image" class="w-20 bg-white" src="{{ bottle.image }}"
+                                         alt="{{ bottle.product_name }} thumbnail">
+                                </a>
+                                <br>
+                                <div class="text-center p-2 justified-center ">
+                                    <h5 class="text-gray-900 text-xl font-medium mb-2">
+                                        {{ bottle.product_name }} <br>
+                                        {% if bottle.inventory.quantity > 0 %}
+                                            <small>(In Stock)</small>
+                                        {% else %}
+                                            <small>(Out of Stock)</small>
+                                        {% endif %}
+                                    </h5>
+                                    {% include 'product-modal.jinja2' %}
+
+                                    <form action="{{ url_for('cart.add_to_cart', bottles_id=bottle.id) }}"
+                                          method="POST">
+                                        <div class="inline-block">
+                                            {% if bottle.inventory.quantity > 0 %}
+                                                {% include '_button.jinja2' %}
+                                            {% endif %}
+                                        </div>
+
+                                    </form>
+
+                                </div>
+                            </div>
+
+                        {% endfor %}
+                    </div>
+
+                    <div id="pages-nav-wrapper" class="bg-white py-14 p-4 flex items-center justify-center flex-wrap">
+                        <nav id="pages-nav" aria-label="Page navigation">
+                            <ul class="inline-flex">
+                                <li>
+                                    {% if prev_url %}
+                                        <button class="px-4 py-2 text-red-600 transition-colors duration-150 bg-white border border-r-0 border-orange-600 rounded-l-lg
+          focus:shadow-outline hover:bg-orange-100" onclick="window.location.href='{{ prev_url }}';" tabindex="-1">Prev
+                                        </button>
+                                    {% endif %}
+                                </li>
+                                <li>
+                                    <button class="px-4 py-2 text-black-600 transition-colors duration-150 bg-white border border-r-0 border-orange-600 focus:shadow-outline"
+                                            onclick="window.location.href='/wine?page=1';">1
+                                    </button>
+                                </li>
+                                <li>
+                                    <button class="px-4 py-2 text-black-600 transition-colors duration-150 bg-white border border-r-0 border-orange-600 focus:shadow-outline"
+                                            onclick="window.location.href='/wine?page=2';">2
+                                    </button>
+                                </li>
+                                <li>
+                                    <button class="px-4 py-2 text-black-600 transition-colors duration-150 bg-white border border-r-0 border-orange-600 focus:shadow-outline"
+                                            onclick="window.location.href='/wine?page=3';">3
+                                    </button>
+                                </li>
+                                <li>
+                                    <button class="px-4 py-2 text-black-600 transition-colors duration-150 bg-white border border-r-0 border-orange-600 focus:shadow-outline"
+                                            onclick="window.location.href='/wine?page=4';">4
+                                    </button>
+                                </li>
+                                <li>
+                                    <button class="px-4 py-2 text-black-600 transition-colors duration-150 bg-white border border-r-0 border-orange-600 focus:shadow-outline"
+                                            onclick="window.location.href='/wine?page=5';">5
+                                    </button>
+                                </li>
+                                <li>
+                                    <button class="px-4 py-2 text-black-600 transition-colors duration-150 bg-white border border-r-0 border-orange-600 focus:shadow-outline"
+                                            onclick="window.location.href='/wine?page=6';">6
+                                    </button>
+                                </li>
+                                <li>
+                                    {% if next_url %}
+                                          {% include '_next_button.jinja2' %}
+                                    {% endif %}
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+{% endblock %}

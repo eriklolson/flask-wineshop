@@ -1,0 +1,54 @@
+{% extends "layout.jinja2" %}
+
+{% block title %}Transactions{% endblock %}
+
+{% block content %}
+
+    <div class="container mx-auto my-5 w-1/2">
+        <h2 class="panel-title">
+         Your   Transaction History
+        </h2>
+    <br>
+        <div class="flex flex-col">
+            <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                    <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                        <table class="min-w-full divide-y p-5 divide-gray-200">
+                            <thead class="bg-gray-50">
+                            <tr>
+                                <th scope="col"
+                                    class="px-6 py-3 text-left text-lg font-bold text-black uppercase tracking-wider">
+                                    Order Date
+                                </th>
+                                <th scope="col"
+                                    class="px-6 py-3 text-left text-lg font-bold text-black uppercase tracking-wider">
+                                    Order ID
+                                </th>
+                                <th scope="col"
+                                    class="px-6 py-3 text-left text-lg font-bold text-black uppercase tracking-wider">
+                                    Order Total
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <!-- Odd row -->
+                            <tr class="bg-white">
+                                {% for order in orders %}
+                                    <td class="px-6 py-4 whitespace-nowrap font-bold text-base  font-bold text-black">
+                                        {{ order.order_date }}
+                                    </td>
+                                    <td class="px-6 py-4 self-center whitespace-nowrap font-bold text-base text-black">
+                                        {{ order.id }}
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap font-bold text-base text-black">
+                                        {{ order.order_total }} $
+                                    </td>
+                                    </tr>{% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

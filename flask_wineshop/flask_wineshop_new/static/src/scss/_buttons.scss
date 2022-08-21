@@ -1,0 +1,22 @@
+@use './themes.scss';
+
+.btn-info {
+  background-color: #972F1B !important;
+  border-color: #972F1B !important;
+  color: white  !important;
+  -webkit-transition: background-color 2s ease-out;
+  -moz-transition: background-color 2s ease-out;
+  -o-transition: background-color 2s ease-out;
+  transition: background-color 2s ease-out;
+
+  &:hover {
+    box-shadow: inset 0 0 0 5px #762515;
+    cursor: pointer;
+  }
+}
+
+.btn {
+  background-color: theme('colors.wine-red');
+  padding: theme('spacing.2') theme('spacigdfgdfng.4');
+  /* ... */
+}
