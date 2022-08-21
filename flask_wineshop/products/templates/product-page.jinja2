@@ -4,7 +4,7 @@
 
 {% block content %}
 
-    <main class="flex justify-center w-full border mt-0">
+    <main class="flex justify-center w-full border mt-12">
         <div class="container md:w-11/12 flex flex-col md:flex-row">
 
             {% include "_sidebar.jinja2" %}
@@ -32,9 +32,7 @@
                                     {% endif %}
                                 </div>
 
-
                                 <div class="p-4">
-
                                     <div x-cloak x-data="{ openTab: 2 }" class="p-6 mb-7">
                                         <ul class="flex border-b border-gray-300 z-1 bg-gray-200 pt-2 px-2">
                                             <li x-on:click="openTab = 1" class=" w-full mr-1 z-10"
@@ -60,6 +58,24 @@
                                                 <br>
                                                 <div class="font-base grid grid-cols-6 divide-y-2 backdrop: divide-y-reverse">
                                                     <div class="col-start-3 col-end-7"></div>
+                                                    <div class="col-start-1 col-end-3 font-black py-2 text-base">
+                                                        Producer
+                                                    </div>
+                                                    <div class="col-start-3 col-end-7 py-2 text-base">{{ product.producer_name }}</div>
+                                                    <div class="col-start-1 col-end-3 font-black py-2 text-base">
+                                                        Country
+                                                    </div>
+                                                    <div class="col-start-3 col-end-7 py-2 text-base">{{ product.country_name }}</div>
+
+                                                    <div class="col-start-1 col-end-3 font-black py-2 text-base">
+                                                        Region
+                                                    </div>
+                                                    <div class="col-start-3 col-end-7 py-2 text-base">{{ product.region_name }}</div>
+
+                                                    <div class="col-start-1 col-end-3 font-black py-2 text-base">
+                                                        Appellation
+                                                    </div>
+                                                    <div class="col-start-3 col-end-7 py-2 text-base">{{ product.appellation }}</div>
                                                     <div class="col-start-1 col-end-3 font-black py-2 text-base">Wine
                                                         Type
                                                     </div>
@@ -79,27 +95,15 @@
                                                     <div class="col-start-1 col-end-3 font-black py-2 text-base">Product
                                                         Size
                                                     </div>
-                                                    <div class="col-start-3 col-end-7 py-2 text-base">{{ product.volume }}</div>
+                                                    <div class="col-start-3 col-end-7 py-2 text-base">{{ product.volume }}
+                                                        ml.
+                                                    </div>
+
                                                     <div class="col-start-1 col-end-3 font-black py-2 text-base">
                                                         Proof/ABV
                                                     </div>
                                                     <div class="col-start-3 col-end-7 py-2 text-base">{{ product.proof }}%</div>
-                                                    <div class="col-start-1 col-end-3 font-black py-2 text-base">Product
-                                                        Size
-                                                    </div>
-                                                    <div class="col-start-3 col-end-7 py-2 text-base">{{ product.volume }}</div>
-                                                    <div class="col-start-1 col-end-3 font-black py-2 text-base">
-                                                        Country
-                                                    </div>
-                                                    <div class="col-start-3 col-end-7 py-2 text-base">{{ product.country_name }}</div>
-                                                    <div class="col-start-1 col-end-3 font-black py-2 text-base">
-                                                        Region
-                                                    </div>
-                                                    <div class="col-start-3 col-end-7 py-2 text-base">{{ product.region_name }}</div>
-                                                    <div class="col-start-1 col-end-3 font-black py-2 text-base">
-                                                        Appellation
-                                                    </div>
-                                                    <div class="col-start-3 col-end-7 py-2 text-base">{{ product.appellation }}</div>
+
                                                 </div>
                                                 <br>
                                                 <form action="{{ url_for('cart.add_to_cart', user_id=current_user.id, bottles_id=product.id) }}"
