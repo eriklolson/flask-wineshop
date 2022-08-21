@@ -63,6 +63,5 @@ env_specs:
     - wtforms-components
     - pip:
       - Flask-Session
-      - sqlathanor
 packages:
 - testbook

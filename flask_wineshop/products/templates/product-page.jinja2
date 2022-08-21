@@ -111,26 +111,9 @@
                                                             ${{ product.price }}
                                                         </div>
                                                     </div>
-{#                                                    {% if product.inventory.quantity > 0 %}#}
-{#                                                        <div id="modal-addToCart-quantity"#}
-{#                                                             class="v65-product-addToCart-quantity pb-5">#}
-{##}
-{#                                                            <input id="v65-quantity-box"#}
-{#                                                                   type="number"#}
-{#                                                                   pattern="[0-9]*"#}
-{#                                                                   aria-label="Quantity"#}
-{#                                                                   name="qty"#}
-{#                                                                   value="1"#}
-{#                                                                   min=1#}
-{#                                                                   max={{ product.inventory.quantity }}#}
-{#                                                                           style="width: 40px; text-align:#}
-{#                                                                   center;">#}
-{#                                                        </div>#}
-{#                                                    {% endif %}#}
-
                                                     <div class="panel-footer">
                                                         {% if product.inventory.quantity > 0 %}
-                                                            {% include '_button.jinja2' %}
+                                                            {% include '_button-add.jinja2' %}
                                                         {% endif %}
                                                     </div>
 

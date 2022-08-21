@@ -3,6 +3,10 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+#anaconda-project
+cd..
+requierments.txt
+
 # C extensions
 *.so
 

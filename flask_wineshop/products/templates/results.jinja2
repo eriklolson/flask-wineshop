@@ -2,51 +2,52 @@
 
 {% block content %}
 
-    <div class="flex justify-center w-full border mt-0">
-        <div class="container w-11/12 flex flex-col md:flex-row">
+    <div class="w-full my-12 mx-auto px-4 md:px-12">
+        <div class="container flex flex-col w-11/12 md:flex-row">
             {% include "_sidebar.jinja2" %}
-            <section class="min-h-screen md:flex-grow md:w-auto">
+            <!-- Column -->
+            <section class=" md:flex-grow md:w-auto">
                 <div class="container">
-                    <div class="grid grid-cols-1 md:grid-cols-2 p-5 gap-3">
+                    <div class="grid grid-cols-1 md:grid-cols-2 px-2 py-2 gap-12">
                         {% for bottle in bottles %}
-                            <div class="rounded-lg shadow-lg bg-white text-center justify-center max-w-sm">
-
+                            <div class="justify-between max-w-sm py-12 rounded-lg shadow-lg
+                                         transform transition duration-500 hover:scale-110
+                                        hover:bg-gray-300 hover:drop-shadow-2xl bg-white text-center
+                                        ">
                                 <a href="#item{{ bottle.id }}" rel="modal:open"
-                                   class="w-full bg-white px-4 py-2 border border-transparent rounded-md flex
-                                        items-center justify-center text-base font-medium text-white hover:bg-indigo-700
-                                        focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:w-auto sm:inline-flex">
-                                    <img id="card-image" class="w-20 bg-white" src="{{ bottle.image }}"
+                                   class="flex items-center justify-center w-full px-6 border border-transparent rounded-md
+                                         focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:w-auto sm:inline-flex">
+                                    <img class="w-20 bg-current," src="{{ bottle.image }}"
                                          alt="{{ bottle.product_name }} thumbnail">
                                 </a>
                                 <br>
                                 <div class="text-center p-2 justified-center ">
-                                    <h5 class="text-gray-900 text-xl font-medium mb-2">
-                                        {{ bottle.product_name }} <br>
+
+                                    <h5 class="text-2xl text-extrabold font-black">
+                                        <a href="#item{{ bottle.id }}" rel="modal:open">
+                                            {{ bottle.product_name }}
+                                        </a>
+                                        <br>
+                                                              {% if bottle.description !="'-'" %}
+                                        <div class="text-red-700 italic"><small>Featured Product</small>
+                                        </div>
+                                    {% endif %}
+
                                         {% if bottle.inventory.quantity > 0 %}
                                             <small>(In Stock)</small>
                                         {% else %}
                                             <small>(Out of Stock)</small>
                                         {% endif %}
+
                                     </h5>
+         <small>${{ bottle.price }}</small>
                                     {% include 'product-modal.jinja2' %}
 
                                     <form action="{{ url_for('cart.add_to_cart', bottles_id=bottle.id) }}"
                                           method="POST">
-{#                                        {% if bottle.inventory.quantity > 0 %}#}
-{##}
-{#                                            <div class="relative flex flex-row w-1/6 h-8">#}
-{#                                                <input id="v65-quantity-box" type="number" pattern="[0-9]*"#}
-{#                                                       aria-label="Quantity"#}
-{#                                                       name="qty" value="1" min=1#}
-{#                                                       max={{ bottle.inventory.quantity }} style="width: 40px;#}
-{#                                                       text-align:#}
-{#                                                       center;">#}
-{#                                            </div>#}
-{##}
-{#                                        {% endif %}#}
-                                        <div class="inline-block">
+                                        <div class="inline-bloc pt-2 ">
                                             {% if bottle.inventory.quantity > 0 %}
-                                                {% include '_button.jinja2' %}
+                                                {% include '_button-add.jinja2' %}
                                             {% endif %}
                                         </div>
 
@@ -63,9 +64,7 @@
                             <ul class="inline-flex">
                                 <li>
                                     {% if prev_url %}
-                                        <button class="px-4 py-2 text-red-600 transition-colors duration-150 bg-white border border-r-0 border-orange-600 rounded-l-lg
-          focus:shadow-outline hover:bg-orange-100" onclick="window.location.href='{{ prev_url }}';" tabindex="-1">Prev
-                                        </button>
+                                        {% include '_button-previous.jinja2' %}
                                     {% endif %}
                                 </li>
                                 <li>
@@ -100,7 +99,7 @@
                                 </li>
                                 <li>
                                     {% if next_url %}
-                                          {% include '_next_button.jinja2' %}
+                                        {% include '_button-next.jinja2' %}
                                     {% endif %}
                                 </li>
                             </ul>
