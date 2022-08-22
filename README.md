@@ -3,6 +3,9 @@
 ## Objectives
 My goal was to make a full e-commerce website.  To accomplish this, I created a wine merchant website.   Although a wine merchant has unique product offerings, there are functionalities that are common to many e-commerce sites. This includes:
 
+## Deployed Instance
+www.flaskwineshop.com
+
 Public Users
 * View products
 * Flash messages for user feedback
