@@ -37,5 +37,3 @@ Logged-in Users
 * Flask-paginate
 * Flask-REST-JSONAPI
 
-## Directions
-These instructions assume anaconda (or miniconda) is installed. Install anaconda-project if not already installed with 'conda install anaconda-project'. Then install app dependencies and create environment by running the command 'anaconda-project run'. This same command is also used to run the app on localhost.
