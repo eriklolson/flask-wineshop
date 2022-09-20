@@ -15,7 +15,7 @@ Logged-in Users
 * View order history
 * View user profile
 
-### Technologies Used Include:
+## Technologies Used Include:
 * Python
 * Flask
 * Jinja2
@@ -36,4 +36,8 @@ Logged-in Users
 * Flask-Login
 * Flask-paginate
 * Flask-REST-JSONAPI
+
+## Live Instance
+
+http://www.flaskwineshop.com
 
