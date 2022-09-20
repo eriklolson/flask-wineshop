@@ -39,5 +39,5 @@ Logged-in Users
 
 ## Live Instance
 
-http://www.flaskwineshop.com
+https://www.flaskwineshop.com
 
