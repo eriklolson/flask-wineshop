@@ -24,29 +24,29 @@
         }
     </style>
 </head>
-<body class="flex flex-col min-h-screen">
+<body>
+    <div class="flex flex-col min-h-screen">
+        <header class="left-0 top-0 w-screen w-full justify-center">
+            {% if current_user.is_authenticated %}
+                {% include 'navigation-loggedin.jinja2' %}
+            {% else %}
+                {% include 'navigation-default.jinja2' %}
+            {% endif %}
+        </header>
 
-<header class="left-0 top-0 w-screen w-full justify-center">
-    {% if current_user.is_authenticated %}
-        {% include 'navigation-loggedin.jinja2' %}
-    {% else %}
-        {% include 'navigation-default.jinja2' %}
-    {% endif %}
-</header>
+        <main class="flex-auto">
+            <div class="container items-center min-h-full w-11/12 bg-white rounded-md">
+                 {% include '_flashes.jinja2' %}
+            </div>
+            {% block content %}{% endblock %}
+        </main>
 
-<main>
-    <div class="container items-center min-h-full w-11/12 bg-white rounded-md">
-         {% include '_flashes.jinja2' %}
+        {% if current_user.is_authenticated %}
+            {% include 'footer-loggedin.jinja2' %}
+        {% else %}
+            {% include 'footer-default.jinja2' %}
+        {% endif %}
     </div>
-    {% block content %}{% endblock %}
-</main>
-
-{% if current_user.is_authenticated %}
-    {% include 'footer-loggedin.jinja2' %}
-{% else %}
-    {% include 'footer-default.jinja2' %}
-{% endif %}
-
 {% block scripts %}
     <!-- Load Jquery CDN -->
     <scriptt %} src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></scriptt>
