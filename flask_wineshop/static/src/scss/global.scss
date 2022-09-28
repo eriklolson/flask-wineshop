@@ -121,22 +121,25 @@ header {
   background-color: #64748B;
   color: white;
 }
-//footer {
-//  background: themes.$dark-gray;
-//
-//  a {
-//    color: white;
-//
-//    &:hover {
-//      color: themes.$red;
-//    }
-//  }
-//}
+
 /********** Site footer ************/
 footer {
   background-color: themes.$dark-gray;
 
-  ul {
+ #first {
+    columns: 2;
+    -webkit-columns: 2;
+    -moz-columns: 2;
+
+    a {
+      color: white;
+
+      &:hover {
+        color: themes.$orange;
+      }
+    }
+  }
+   #second {
     columns: 2;
     -webkit-columns: 2;
     -moz-columns: 2;

@@ -11,7 +11,7 @@
     <div class="hidden sm:flex flex-1">&nbsp;</div>
 
     <!-- primary nav -->
-    <ul id="nav-content" class="ml-auto hidden space-x-9 lg:flex items-center">
+    <ul id="nav-content" class="hidden ml-auto space-x-15 lg:flex items-center">
         <li x-data="{ isOpen: false}"
             @mouseleave="isOpen = false"
             class="relative pr-8 py-full">
@@ -19,8 +19,7 @@
             <a @mouseover="isOpen = !isOpen"
                @keydown.escape="isOpen = false"
                href="{{ url_for('products.wine') }}"
-            class=""
-            >
+                class="">
                 <img @mouseover="isOpen = !isOpen"
                      @keydown.escape="isOpen = false"
                      class="filter-white self-center w-10 h-10"
@@ -47,7 +46,7 @@
         </li>
     </ul>
     <!-- Utility Nav -->
-    <ul class="hiddens pace-x-15 pr-8 sm:flex items-center">
+    <ul class="hidden pace-x-15 pr-8 sm:flex items-center">
         <li x-data="{ isOpen: false }"
             @mouseleave="isOpen = false"
             class="relative pr-8 text-white py-full">
@@ -55,8 +54,7 @@
             <a @mouseover="isOpen = !isOpen"
                @keydown.escape="isOpen = false"
                href="{{ url_for('auth.login') }}"
-                        class=""
-            >
+                        class="">
                 <img @mouseover="isOpen = !isOpen"
                      @keydown.escape="isOpen = false"
                      src="{{ url_for('static', filename='svg/user_icon.svg') }}"

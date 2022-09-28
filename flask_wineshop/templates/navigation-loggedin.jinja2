@@ -1,4 +1,4 @@
-<nav id="main-nav" class="container flex flex-wrap w-11/12 py-6 px-4 mx-auto justify-between space-x-8 text-white">
+<nav id="main-nav" class="container flex flex-wrap w-11/12 py-6 px-4 mx-auto justify-between space-x-9 text-white">
     <!-- logo  max-w-screen-xl-->
     <div id="site-title" class="flex items-center flex-shrink-0">
         <a class="flex" href="{{ url_for('home.index') }}">
@@ -20,7 +20,7 @@
             <a @mouseover="isOpen = !isOpen"
                @keydown.escape="isOpen = false"
                href="{{ url_for('products.wine') }}"
-             class="">
+               class="">
                 <img @mouseover="isOpen = !isOpen"
                      @keydown.escape="isOpen = false"
                      class="filter-white self-center w-10 h-10"
