@@ -97,7 +97,7 @@ def create_order(order_total):
     db.session.flush()
     db.session.commit()
 
-    update_ordered_items(order_id, user_id)
+    update_ordered_items(user_id, order_id)
     update_transactions(order_id, order_date, order_total, card_number, card_type)
     remove_ordered_items_from_cart(user_id)
 
