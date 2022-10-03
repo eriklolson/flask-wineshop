@@ -55,7 +55,6 @@ def signup():
     POST: Validate form, create account, redirect user to index.
     """
     form = SignupForm()
-    user = Cart.get_user(current_user)
     quantity_total = Cart.get_quantity_total(current_user)
     if current_user.is_authenticated:
         return redirect(url_for('home.index'))
