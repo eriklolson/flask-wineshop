@@ -125,3 +125,8 @@ migrations/
 # Jira
 .jira-prefix
 .jira-url
+
+# Server files
+re
+sys
+flask-wineshop.sock
