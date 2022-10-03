@@ -1,10 +1,11 @@
 """Routes for shopping cart and order"""
 from flask import abort, request, render_template, redirect, url_for
-from flask_login import login_required, current_user
+from flask_login import login_required
 
-from .helpers import *
 from . import bp
+from .helpers import *
 from .forms import *
+from flask_wineshop.models import *
 
 
 @bp.route('/cart/<int:user_id>', methods=['GET', 'POST'])
@@ -13,9 +14,9 @@ def cart(user_id):
     if current_user.id != user_id:
         return abort(403)
     else:
-        user_cart = get_cart(user_id=current_user.id)
+        user_cart = Cart.get_cart(user_id=current_user.id)
         grand_total = 0
-        quantity_total = get_quantity_total()
+        quantity_total = Cart.get_quantity_total(current_user)
         for bottle in user_cart:
             grand_total += float(bottle.price) * int(bottle.buy_quantity)
 
@@ -36,13 +37,12 @@ def cart(user_id):
 @login_required
 def add_to_cart(bottles_id):
     quantity = request.form.get('qty')
-    user_cart = get_cart(user_id=current_user.id)
+    user_cart = Cart.get_cart(user_id=current_user.id)
     # check if bottle in cart
     # if bottles_id in db.session.query(Cart).filter_by(bottles_id=bottles_id).all():
     if bottles_id in user_cart:
         # if yes, update quantity
         item = db.session.query(Cart).filter_by(bottles_id=bottles_id, buyer=current_user).first()
-        # item = Cart.filter(bottles_id == bottles_id)
         item.buy_quantity += 1
         db.session.commit()
         flash('This product already in cart, quantity added!' 'error')
@@ -72,10 +72,9 @@ def remove_from_cart(bottles_id):
 @login_required
 def create_order(order_total):
     form = CheckoutForm
-    # Commit sales order, triggering other functions that update backend database to reflect sale
-
     user_id = current_user.id
-    user_cart = get_cart(user_id=current_user.id)
+    quantity_total = 0
+    user_cart = Cart.get_cart(user_id=user_id)
     fullname = request.form.get('fullname')
     order_date = datetime.utcnow()
     for item in user_cart:
@@ -97,8 +96,9 @@ def create_order(order_total):
     db.session.flush()
     db.session.commit()
 
-    update_ordered_items(user_id, order_id)
-    update_transactions(order_id, order_date, order_total, card_number, card_type)
-    remove_ordered_items_from_cart(user_id)
+    OrderedItems.update_ordered_items(user_id, order_id)
+    Transactions.update_transactions(order_id, order_date, order_total, card_number, card_type)
+    Cart.remove_ordered_items_from_cart(user_id)
 
-    return render_template('ordered.jinja2', fullname=fullname, order_id=order_id, order_total=order_total, form=form)
+    return render_template('ordered.jinja2', fullname=fullname, order_id=order_id, order_total=order_total, form=form,
+                           quantity_total=quantity_total)

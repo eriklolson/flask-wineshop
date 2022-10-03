@@ -2,7 +2,7 @@
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
 from flask import flash
-from flask_login import UserMixin
+from flask_login import UserMixin, current_user
 from . import db
 import json
 
@@ -18,13 +18,6 @@ class User(UserMixin, db.Model):
 
     cart = db.relationship('Cart', back_populates='buyer', lazy='joined')
 
-    # def __init__(self, username, email, password, date_joined, last_login):
-    #     self.username = username
-    #     self.email = email
-    #     self.password = password
-    #     self.date_joined = date_joined
-    #     self.last_login = last_login
-
     def __repr__(self):
         return '<User {}>'.format(self.username)
 
@@ -33,6 +26,17 @@ class User(UserMixin, db.Model):
 
     def check_password(self, password):
         return check_password_hash(self.password, password)
+
+    def get_user(current_user):
+        if current_user.is_authenticated:
+            user = current_user.id
+        else:
+            user = None
+        return user
+
+    def get_orders(user_id):
+        orders = Order.query.filter_by(user_id=user_id).order_by(Order.id).all()
+        return orders
 
     def save_user_to_db(self):
         db.session.add(self)
@@ -44,14 +48,6 @@ class User(UserMixin, db.Model):
 
     def to_json(self):
         return json.dumps(self, default=lambda obj: obj.__dict__, sort_keys=True)
-
-    # def json(self):
-    #     return {
-    #         'username': self.username,
-    #         'email': self.email,
-    #         'date_joined': self.date_joined,
-    #         'last_login': self.last_login
-    #     }
 
 
 class Cart(UserMixin, db.Model):
@@ -72,6 +68,18 @@ class Cart(UserMixin, db.Model):
     def __repr__(self):
         return f"Cart('{self.id}', '{self.bottles_id}, '{self.user_id}', '{self.buy_quantity}'))"
 
+    def get_cart(user_id):
+        if current_user.is_authenticated:
+            cart = Bottles.query.join(Stocks, Bottles.id == Stocks.bottles_id). \
+                add_columns(Stocks.quantity). \
+                join(Cart, Bottles.id == Cart.bottles_id). \
+                add_columns(Bottles.id, Bottles.product_name, Bottles.color_name, Bottles.primary_grape,
+                            Bottles.year, Bottles.image, Bottles.price, Cart.buy_quantity). \
+                filter_by(buyer=current_user).all()
+        else:
+            cart = 0
+        return cart
+
     def add_to_cart(user_id, bottles_id, buy_quantity):
         item_to_add = Cart(user_id=user_id, bottles_id=bottles_id, buy_quantity=buy_quantity)
         db.session.add(item_to_add)
@@ -83,16 +91,30 @@ class Cart(UserMixin, db.Model):
         db.session.commit()
         flash('Product deleted from cart', 'success')
 
+    def get_quantity_total(current_user):
+        if current_user.is_authenticated:
+            quantity_total = 0
+            user_id = current_user.id
+            user_cart = Cart.get_cart(user_id=user_id)
+            for bottle in user_cart:
+                quantity_total += bottle.buy_quantity
+        else:
+            quantity_total = 0
+        return quantity_total
+
+    def cart_order(user_id, order_total):
+        items = db.session.query(Cart).filter(Cart.user_id == user_id).all()
+        for item in items:
+            order = Order(user_id=item.user_id, order_date=datetime.utcnow(), order_total=order_total)
+            db.session.add(order)
+            db.session.commit()
+
+    def remove_ordered_items_from_cart(user_id):
+        db.session.query(Cart).filter(Cart.user_id == user_id).delete()
+        db.session.commit()
+
     def to_json(self):
         return json.dumps(self, default=lambda obj: obj.__dict__, sort_keys=True)
-
-    # def json(self):
-    #     return {
-    #         'id': self.id,
-    #         'user_id': self.user_id,
-    #         'bottles_id': self.bottles_id,
-    #         'buy_quantity': self.buy_quantity
-    #     }
 
 
 class Order(UserMixin, db.Model):
@@ -110,16 +132,13 @@ class Order(UserMixin, db.Model):
     def __repr__(self):
         return f"Order('{self.id}', '{self.user_id}','{self.order_date}','{self.order_total}')"
 
+    def get_order_id(user_id):
+        order_id = db.session.query(Order.id).filter(Order.user_id == user_id).order_by(Order.id.desc()).first()
+        order_id = order_id[0]
+        return order_id
+
     def to_json(self):
         return json.dumps(self, default=lambda obj: obj.__dict__, sort_keys=True)
-
-    # def json(self):
-    #     return {
-    #         'id': self.id,
-    #         'user_id': self.user_id,
-    #         'order_date': self.order_date,
-    #         'order_total': self.order_total
-    #     }
 
 
 class OrderedItems(UserMixin, db.Model):
@@ -137,15 +156,15 @@ class OrderedItems(UserMixin, db.Model):
     def __repr__(self):
         return f"Order('{self.id}', '{self.order_id}','{self.bottles_id}','{self.quantity}', '{self.item_price}')"
 
+    def update_ordered_items(user_id, order_id):
+        cart = Cart.query.with_entities(Cart.bottles_id, Cart.buy_quantity).filter(Cart.user_id == user_id)
+        for item in cart:
+            ordered_cart_item = OrderedItems(order_id=order_id, bottles_id=item.bottles_id, quantity=item.buy_quantity)
+            db.session.add(ordered_cart_item)
+            db.session.commit()
+
     def to_json(self):
         return json.dumps(self, default=lambda obj: obj.__dict__, sort_keys=True)
-
-    # def json(self):
-    #     return {
-    #         'order_id': self.order_id,
-    #         'bottles_id': self.bottles_id,
-    #         'quantity': self.quantity
-    #     }
 
 
 class Transactions(UserMixin, db.Model):
@@ -170,18 +189,14 @@ class Transactions(UserMixin, db.Model):
         return f"Order('{self.id}', '{self.order_id}','{self.transaction_date}','{self.transaction_total}'," \
                f"'{self.card_number}'), '{self.card_type}', '{self.response}')"
 
+    def update_transactions(order_id, order_date, order_total, card_number, card_type):
+        transaction = Transactions(order_id=order_id, transaction_date=order_date, transaction_total=order_total,
+                                   card_number=card_number, card_type=card_type, response='success')
+        db.session.add(transaction)
+        db.session.commit()
+
     def to_json(self):
         return json.dumps(self, default=lambda obj: obj.__dict__, sort_keys=True)
-
-    # def json(self):
-    #     return {
-    #         'order_id': self.order_id,
-    #         'transaction_date': self.transaction_date,
-    #         'card_number': self.card_number,
-    #         'transaction_date': self.transaction_date,
-    #         'card_type': self.card_type,
-    #         'response': self.response
-    #     }
 
 
 class Bottles(UserMixin, db.Model):
@@ -231,25 +246,6 @@ class Bottles(UserMixin, db.Model):
 
     def to_json(self):
         return json.dumps(self, default=lambda obj: obj.__dict__, sort_keys=True)
-
-    # def json(self):
-    #     return {
-    #         'product_name': self.product_name,
-    #         'year': self.year,
-    #         'volume': self.volume,
-    #         'proof': self.proof,
-    #         'country_id': self.country_id,
-    #         'country_name': self.country_name,
-    #         'region_id': self.region_id,
-    #         'region_name': self.region_name,
-    #         'appellation': self.appellation,
-    #         'color_name': self.color_name,
-    #         'primary_grape': self.primary_grape,
-    #         'all_grape': self.all_grape,
-    #         'price': self.price,
-    #         'image': self.image,
-    #         'description': self.description
-    #     }
 
 
 class Stocks(UserMixin, db.Model):

@@ -1,6 +1,6 @@
-from flask import url_for, request, render_template, Blueprint
+from flask import url_for, request, render_template
 from sqlalchemy import desc
-from flask_wineshop.cart.helpers import *
+
 from flask_wineshop.models import *
 from . import bp
 from flask import current_app as app
@@ -8,7 +8,7 @@ from flask import current_app as app
 
 @bp.route('/product-page/<int:bottles_id>')
 def product_page(bottles_id):
-    quantity_total = get_quantity_total()
+    quantity_total = Cart.get_quantity_total(current_user)
     product = Bottles.query.get(bottles_id)
     bottles = db.session.query(Bottles).order_by(desc(Bottles.description)).all()
     colors = Bottles.query.with_entities(Bottles.color_name).distinct().order_by(Bottles.color_name.asc())
@@ -22,7 +22,7 @@ def product_page(bottles_id):
 @bp.route('/wine')
 def wine():
     page = request.args.get('page', 1, type=int)
-    quantity_total = get_quantity_total()
+    quantity_total = Cart.get_quantity_total(current_user)
 
     bottles = Bottles.query.order_by(desc(Bottles.description)).paginate(
         page, app.config['WINES_PER_PAGE'], False)
@@ -40,7 +40,7 @@ def wine():
 @bp.route('/color/<color_name>')
 def color(color_name):
     page = request.args.get('page', 1, type=int)
-    quantity_total = get_quantity_total()
+    quantity_total = Cart.get_quantity_total(current_user)
     bottles = db.session.query(Bottles).filter_by(color_name=color_name).paginate(
         page, app.config['WINES_PER_PAGE'], False)
     colors = Bottles.query.with_entities(Bottles.color_name).distinct().order_by(Bottles.color_name.asc())
@@ -57,7 +57,7 @@ def color(color_name):
 @bp.route('/varietal/<primary_grape>')
 def varietal(primary_grape):
     page = request.args.get('page', 1, type=int)
-    quantity_total = get_quantity_total()
+    quantity_total = Cart.get_quantity_total(current_user)
     bottles = db.session.query(Bottles).filter_by(primary_grape=primary_grape).paginate(
         page, app.config['WINES_PER_PAGE'], False)
     colors = Bottles.query.with_entities(Bottles.color_name).distinct().order_by(Bottles.color_name.asc())
@@ -74,7 +74,7 @@ def varietal(primary_grape):
 @bp.route("/country/<country_name>")
 def country(country_name):
     page = request.args.get('page', 1, type=int)
-    quantity_total = get_quantity_total()
+    quantity_total = Cart.get_quantity_total(current_user)
     bottles = db.session.query(Bottles).filter_by(country_name=country_name).paginate(
         page, app.config['WINES_PER_PAGE'], False)
     colors = Bottles.query.with_entities(Bottles.color_name).distinct().order_by(Bottles.color_name.asc())
@@ -91,7 +91,7 @@ def country(country_name):
 @bp.route("/region/<region_name>")
 def region(region_name):
     page = request.args.get('page', 1, type=int)
-    quantity_total = get_quantity_total()
+    quantity_total = Cart.get_quantity_total(current_user)
     bottles = db.session.query(Bottles).filter_by(region_name=region_name).paginate(
         page, app.config['WINES_PER_PAGE'], False)
     colors = Bottles.query.with_entities(Bottles.color_name).distinct().order_by(Bottles.color_name.asc())

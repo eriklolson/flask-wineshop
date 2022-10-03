@@ -1,9 +1,9 @@
 """Routes for user authentication."""
-from flask import Blueprint, session, redirect, render_template, request, url_for, flash
+from flask import redirect, render_template, url_for, flash
 from flask_login import current_user, login_required, login_user, logout_user
-from flask_wineshop.cart.helpers import get_quantity_total
+
 from flask_wineshop import login_manager
-from flask_wineshop.models import User, db
+from flask_wineshop.models import User, Cart
 from . import bp
 from .forms import SignupForm, LoginForm
 
@@ -31,7 +31,7 @@ def login():
     POST: Validate form and redirect user to index.
     """
     form = LoginForm()
-    quantity_total = get_quantity_total()
+    quantity_total = Cart.get_quantity_total(current_user)
     if current_user.is_authenticated:
         flash('You are already logged in', 'error')
         return redirect(url_for('home.index'))
@@ -55,7 +55,8 @@ def signup():
     POST: Validate form, create account, redirect user to index.
     """
     form = SignupForm()
-    quantity_total = get_quantity_total()
+    user = Cart.get_user(current_user)
+    quantity_total = Cart.get_quantity_total(current_user)
     if current_user.is_authenticated:
         return redirect(url_for('home.index'))
     if form.validate_on_submit():
