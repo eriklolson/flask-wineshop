@@ -3,9 +3,8 @@ from flask import abort, request, render_template, redirect, url_for
 from flask_login import login_required
 
 from . import bp
-from .helpers import *
 from .forms import *
-from flask_wineshop.models import *
+from flask_wineshop.models import Cart, OrderedItems, Transactions, Order, db
 
 
 @bp.route('/cart/<int:user_id>', methods=['GET', 'POST'])
@@ -39,7 +38,6 @@ def add_to_cart(bottles_id):
     quantity = request.form.get('qty')
     user_cart = Cart.get_cart(user_id=current_user.id)
     # check if bottle in cart
-    # if bottles_id in db.session.query(Cart).filter_by(bottles_id=bottles_id).all():
     if bottles_id in user_cart:
         # if yes, update quantity
         item = db.session.query(Cart).filter_by(bottles_id=bottles_id, buyer=current_user).first()
@@ -88,7 +86,6 @@ def create_order(order_total):
             db.session.commit()
     order_id = db.session.query(Order.id).filter(Order.user_id == user_id).order_by(Order.id.desc()).first()
     order_id = order_id[0]
-    order_total = order_total
     card_number = request.form.get('card_number')
     card_type = request.form.get('card_type')
     order = Order(user_id=user_id, order_date=order_date, order_total=order_total)

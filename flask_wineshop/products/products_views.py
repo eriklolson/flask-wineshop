@@ -1,7 +1,8 @@
 from flask import url_for, request, render_template
 from sqlalchemy import desc
+from flask_login import current_user
 
-from flask_wineshop.models import *
+from flask_wineshop.models import Bottles, Countries, Regions, Cart, db
 from . import bp
 from flask import current_app as app
 
