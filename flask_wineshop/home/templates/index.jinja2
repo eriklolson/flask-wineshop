@@ -7,12 +7,14 @@
 {% endblock %}
 
 {% block content %}
-    <div class="mb-12">
+    <div class="flex justify-center pb-12">
         <section class="hero bg-center md:mt-2 mb-12 text-neutral-content container w-11/12 sm:mt-0"
                  style="background-image: url('{{ url_for('.static', filename='img/hero-vineyard.jpg')}}');">
             <div class="hero-overlay bg-opacity-50"></div>
-            
-
+            <div class="text-white grid grid-cols-3 gap-4 content-center">
+{#                <div>{{ user_id }}</div>#}
+{#                <div>02</div>#}
+            </div>
         </section>
     </div>
     <div class="pb-12">

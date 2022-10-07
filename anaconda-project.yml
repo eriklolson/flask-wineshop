@@ -1,5 +1,5 @@
 name: flask-wineshop
-description: e-commerce project
+description: A Flask Python web application that creates a mock e-commerce website.
 
 commands:
   flask:
@@ -16,6 +16,8 @@ channels:
 - bioconda
 - anaconda
 - judowill
+
+
 platforms:
 - linux-64
 - win-64
@@ -31,7 +33,7 @@ env_specs:
     - conda-pack
     - cssmin
     - email_validator
-    - flask
+    - flask == 2.1.2
     - flask-assets
     - flask-babelex
     - flask-caching
@@ -57,11 +59,12 @@ env_specs:
     - python-dotenv
     - redis-py
     - sqlalchemy-utils
+    - testbook
     - validators
+    - Werkzeug == 2.1.2
     - wtforms
     - wtforms-alchemy
     - wtforms-components
     - pip:
       - Flask-Session
-packages:
-- testbook
+

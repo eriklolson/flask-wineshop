@@ -1,7 +1,28 @@
 //Javascript to toggle the menu
-document.getElementById('nav-toggle').onclick = function() {
-  document.getElementById("nav-content").classList.toggle("hidden");
+// const button = document.querySelector('#nav-toggle');
+// const menu = document.querySelector('#nav-mobile');
+//
+//
+// button.addEventListener('click', () => {
+//   menu.classList.toggle('hidden');
+// });
+
+
+const mobile_icon = document.getElementById('mobile-icon');
+const mobile_menu = document.getElementById('mobile-menu');
+const hamburger_icon = document.querySelector("#mobile-icon i");
+
+function openCloseMenu() {
+  mobile_menu.classList.toggle('block');
+  mobile_menu.classList.toggle('active');
 }
+
+function changeIcon(icon) {
+  icon.classList.toggle("fa-xmark");
+}
+
+mobile_icon.addEventListener('click', openCloseMenu);
+
 
 // Faq
 document.addEventListener('alpine:init', () => {

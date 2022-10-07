@@ -4,13 +4,13 @@
 
     <div class="w-full my-6 mx-auto px-4 md:px-12">
         <div class="container flex flex-col w-11/12 md:flex-row">
-            {% include "_sidebar.jinja2" %}
+            {% include '_sidebar.jinja2' %}
             <!-- Column -->
             <section class=" md:flex-grow md:w-auto">
                 <div class="container">
-                    <div class="grid grid-cols-1 md:grid-cols-2 px-2 py-2 gap-12">
+                    <div class="grid grid-cols-1 md:grid-cols-2 px-2 py-2 gap-12 relative">
                         {% for bottle in bottles %}
-                            <div class="justify-between max-w-sm py-12 rounded-lg shadow-lg
+                            <div class="justify-between  z-0 max-w-sm py-12 rounded-lg shadow-lg
                                          transform transition duration-500 hover:scale-110
                                         hover:bg-gray-300 hover:drop-shadow-2xl bg-white text-center
                                         ">
@@ -28,10 +28,10 @@
                                             {{ bottle.product_name }}
                                         </a>
                                         <br>
-                                                              {% if bottle.description !="'-'" %}
-                                        <div class="text-red-700 italic"><small>Featured Product</small>
-                                        </div>
-                                    {% endif %}
+                                        {% if bottle.description !="'-'" %}
+                                            <div class="text-red-700 italic"><small>Featured Product</small>
+                                            </div>
+                                        {% endif %}
 
                                         {% if bottle.inventory.quantity > 0 %}
                                             <small>(In Stock)</small>
@@ -40,7 +40,7 @@
                                         {% endif %}
 
                                     </h5>
-         <small>${{ bottle.price }}</small>
+                                    <small>${{ bottle.price }}</small>
                                     {% include 'product-modal.jinja2' %}
 
                                     <form action="{{ url_for('cart.add_to_cart', bottles_id=bottle.id) }}"
@@ -62,49 +62,70 @@
                     <div id="pages-nav-wrapper" class="bg-white py-14 p-4 flex items-center justify-center flex-wrap">
                         <nav id="pages-nav" aria-label="Page navigation">
                             <ul class="inline-flex">
-                                <li>
-                                    {% if prev_url %}
+                                {% if prev_url %}
+                                    <li>
                                         {% include '_button-previous.jinja2' %}
-                                    {% endif %}
-                                </li>
-                                <li>
-                                    <button class="px-4 py-2 text-black-600 transition-colors duration-150 bg-white border border-r-0 border-orange-600 focus:shadow-outline"
-                                            onclick="window.location.href='/wine?page=1';">1
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="px-4 py-2 text-black-600 transition-colors duration-150 bg-white border border-r-0 border-orange-600 focus:shadow-outline"
-                                            onclick="window.location.href='/wine?page=2';">2
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="px-4 py-2 text-black-600 transition-colors duration-150 bg-white border border-r-0 border-orange-600 focus:shadow-outline"
-                                            onclick="window.location.href='/wine?page=3';">3
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="px-4 py-2 text-black-600 transition-colors duration-150 bg-white border border-r-0 border-orange-600 focus:shadow-outline"
-                                            onclick="window.location.href='/wine?page=4';">4
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="px-4 py-2 text-black-600 transition-colors duration-150 bg-white border border-r-0 border-orange-600 focus:shadow-outline"
-                                            onclick="window.location.href='/wine?page=5';">5
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="px-4 py-2 text-black-600 transition-colors duration-150 bg-white border border-r-0 border-orange-600 focus:shadow-outline"
-                                            onclick="window.location.href='/wine?page=6';">6
-                                    </button>
-                                </li>
-                                <li>
-                                    {% if next_url %}
+                                    <li>
+                                {% else %}
+                                    <li>
+                                        {% include '_button-previous-dead.jinja2' %}
+                                    </li>
+                                {% endif %}
+                                {% if next_url %}
+                                    <li>
+                                        <button class="px-4 py-2 text-black-600 transition-colors duration-150 bg-white border border-r-0 border-red-600 focus:shadow-outline"
+                                                onclick="window.location.href='/wine?page=1';">1
+                                        </button>
+                                    </li>
+                                {% endif %}
+                                {% if next_url %}
+                                    <li>
+                                        <button class="px-4 py-2 text-black-600 transition-colors duration-150 bg-white border border-r-0 border-red-600 focus:shadow-outline"
+                                                onclick="window.location.href='/wine?page=2';">2
+                                        </button>
+                                    </li>
+                                {% endif %}
+                                {% if next_url %}
+                                    <li>
+                                        <button class="px-4 py-2 text-black-600 transition-colors duration-150 bg-white border border-r-0 border-red-600 focus:shadow-outline"
+                                                onclick="window.location.href='/wine?page=3';">3
+                                        </button>
+                                    </li>
+                                {% endif %}
+                                {% if next_url %}
+                                    <li>
+                                        <button class="px-4 py-2 text-black-600 transition-colors duration-150 bg-white border border-r-0 border-red-600 focus:shadow-outline"
+                                                onclick="window.location.href='/wine?page=4';">4
+                                        </button>
+                                    </li>
+                                {% endif %}
+                                {% if next_url %}
+                                    <li>
+                                        <button class="px-4 py-2 text-black-600 transition-colors duration-150 bg-white border border-r-0 border-red-600 focus:shadow-outline"
+                                                onclick="window.location.href='/wine?page=5';">5
+                                        </button>
+                                    </li>
+                                {% endif %}
+                                {% if next_url %}
+                                    <li>
+                                        <button class="px-4 py-2 text-black-600 transition-colors duration-150 bg-white border border-r-0 border-red-600 focus:shadow-outline"
+                                                onclick="window.location.href='/wine?page=6';">6
+                                        </button>
+                                    </li>
+                                {% endif %}
+                                {% if next_url %}
+                                    <li>
                                         {% include '_button-next.jinja2' %}
-                                    {% endif %}
-                                </li>
+                                    </li>
+                                {% else %}
+                                    <li>
+                                        {% include '_button-next-dead.jinja2' %}
+                                    </li>
+                                {% endif %}
                             </ul>
                         </nav>
                     </div>
+
                 </div>
             </section>
         </div>

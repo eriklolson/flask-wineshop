@@ -1,5 +1,5 @@
-<nav id="main-nav" class="container flex flex-wrap w-11/12 py-6 px-4 mx-auto justify-between space-x-9 text-white">
-    <!-- logo  max-w-screen-xl-->
+<nav id="main-nav" class="w-full md:container md:w-11/12 flex flex-wrap mx-auto justify-between items-center md:space-x-9 py-6 px-4 text-white">
+    <!-- logo -->
     <div id="site-title" class="flex items-center flex-shrink-0">
         <a class="flex" href="{{ url_for('home.index') }}">
             <img class="mr-3 self-center h-12" src="{{ url_for('static', filename='img/snail-logo.png') }}"
@@ -9,14 +9,12 @@
     </div>
     <!-- space -->
     <div class="hidden sm:flex flex-1">&nbsp;</div>
-
     <!-- primary nav -->
     <ul id="nav-content" class="hidden ml-auto space-x-15 lg:flex items-center">
 
         <li x-data="{ isOpen: false}"
             @mouseleave="isOpen = false"
             class="relative pr-8 py-full">
-
             <a @mouseover="isOpen = !isOpen"
                @keydown.escape="isOpen = false"
                href="{{ url_for('products.wine') }}"
@@ -55,13 +53,13 @@
             <a @mouseover="isOpen = !isOpen"
                @keydown.escape="isOpen = false"
                href="{{ url_for('auth.logout') }}"
-             class=""
+               class=""
             >
                 <img @mouseover="isOpen = !isOpen"
                      @keydown.escape="isOpen = false"
                      src="{{ url_for('static', filename='svg/user_icon.svg') }}"
                      class="filter-white w-10 h-10" alt="user-icon"/>
-                Log-out
+                Log Out
             </a>
             <!-- Dropdown menu -->
             <div x-show="isOpen"
@@ -72,7 +70,7 @@
                     Profile
                 </a>
                 <a href="{{ url_for('account.transactions', username=current_user.username) }}" class="block">
-                    Order History
+                    Orders
                 </a>
             </div>
         </li>
@@ -85,8 +83,62 @@
             </a>
         </li>
     </ul>
-    <!-- toggle button -->
-    <div id="toggle-block" class="flex items-center lg:hidden">
+
+    <!-- Mobile menu icon -->
+    <div id="mobile-icon" class="sm:hidden">
+        <i onclick="changeIcon(this)" class="fa-solid fa-bars"></i>
         {% include '_hamburger.jinja2' %}
     </div>
+
+    <!-- Mobile menu -->
+    <div class="md:hidden absolute z-10 justify-center mt-16 w-full">
+        <div id="mobile-menu" class="mobile-menu absolute top-30 w-full"> <!-- add hidden here later -->
+            <ul class="bg-gray-500 shadow-lg leading-9 font-bold h-screen">
+                <li class="border-b-2 border-white hover:bg-red-700 hover:text-white pl-4"><a
+                        href="{{ url_for('auth.logout') }}" class="block pl-7">
+                    Log Out
+                    </a>
+                </li>
+
+                <li class="border-b-2 border-white hover:bg-red-700 hover:text-white pl-4">
+                    <a href="{{ url_for('account.profile', username=current_user.username) }}" class="block pl-7">
+                        Profile
+                    </a>
+                </li>
+                <li class="border-b-2 border-white hover:bg-red-700 hover:text-white pl-4">
+                    <a href="{{ url_for('account.transactions', username=current_user.username) }}" class="block pl-16">
+                        Orders
+                    </a>
+                </li>
+                <li class="border-b-2 border-white hover:bg-red-700 hover:text-white pl-4">
+                    <a href="{{ url_for('products.wine') }}" class="block pl-16">
+                        Shop
+                    </a>
+                    <!-- Submenu starts -->
+                    <ul class="bg-white text-gray-800 w-full">
+                        <li class="text-sm leading-8 font-normal hover:bg-slate-200">
+                            <a href="{{ url_for('products.color', color_name='Red') }}" class="block pl-16">
+                                Red
+                            </a>
+                        </li>
+                        <li class="text-sm leading-8 font-normal hover:bg-slate-200">
+                            <a href="{{ url_for('products.color', color_name='White') }}" class="block pl-16">
+                                White
+                            </a>
+                        </li>
+                        <li class="text-sm leading-8 font-normal hover:bg-slate-200">
+                            <a href="{{ url_for('products.color', color_name='Rose') }}" class="block pl-16">
+                                Rose
+                            </a>
+                        </li>
+                    </ul><!-- Submenu ends -->
+                </li>
+                <li class="border-b-2 border-white hover:bg-red-700 hover:text-white pl-4">
+                    <a href="{{ url_for('cart.cart', user_id=current_user.id) }}" class="block pl-7">
+                        Cart ({{ quantity_total }})
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div><!-- Mobile menu ends -->
 </nav>

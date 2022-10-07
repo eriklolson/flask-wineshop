@@ -3,10 +3,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
 from flask import flash
 from flask_login import UserMixin, current_user
-import json
-
 from . import db
-
+import json
 
 
 class User(UserMixin, db.Model):
@@ -28,7 +26,6 @@ class User(UserMixin, db.Model):
 
     def check_password(self, password):
         return check_password_hash(self.password, password)
-        
 
     def get_orders(user_id):
         orders = Order.query.filter_by(user_id=user_id).order_by(Order.id).all()
