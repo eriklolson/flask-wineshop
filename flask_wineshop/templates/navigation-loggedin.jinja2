@@ -1,4 +1,6 @@
-<nav id="main-nav" class="w-full md:container md:w-11/12 flex flex-wrap mx-auto justify-between items-center md:space-x-9 py-6 px-4 text-white">
+<nav id="main-nav"
+     class="w-full md:container md:w-11/12 flex flex-wrap mx-auto justify-between items-center
+      md:space-x-9 py-6 px-4 text-white">
     <!-- logo -->
     <div id="site-title" class="flex items-center flex-shrink-0">
         <a class="flex" href="{{ url_for('home.index') }}">
@@ -14,11 +16,12 @@
 
         <li x-data="{ isOpen: false}"
             @mouseleave="isOpen = false"
-            class="relative pr-8 py-full">
+            class="relative pr-8 hover:bg-gray-500">
+
             <a @mouseover="isOpen = !isOpen"
                @keydown.escape="isOpen = false"
                href="{{ url_for('products.wine') }}"
-               class="">
+               class="uppercase">
                 <img @mouseover="isOpen = !isOpen"
                      @keydown.escape="isOpen = false"
                      class="filter-white self-center w-10 h-10"
@@ -30,7 +33,10 @@
             <div x-show="isOpen"
                  x-cloak
                  @click.away="isOpen = false"
-                 class="absolute overflow-hidden bg-gray-500 px-8 right-0 w-100 mt-0 z-20">
+                 class="absolute overflow-hidden bg-gray-500 py-4 px-10 right-0 w-100 z-20">
+                <a href="{{ url_for('products.wine') }}" class="block bg-700 text-white">
+                    All
+                </a>
                 <a href="{{ url_for('products.color', color_name='Red') }}" class="block bg-700 text-white">
                     Red
                 </a>
@@ -48,12 +54,12 @@
     <ul class="hidden space-x-15 pr-8  sm:flex items-center">
         <li x-data="{ isOpen: false }"
             @mouseleave="isOpen = false"
-            class="relative pr-8 text-white py-full">
+            class="relative pr-8 hover:bg-gray-500">
 
             <a @mouseover="isOpen = !isOpen"
                @keydown.escape="isOpen = false"
                href="{{ url_for('auth.logout') }}"
-               class=""
+               class="uppercase"
             >
                 <img @mouseover="isOpen = !isOpen"
                      @keydown.escape="isOpen = false"
@@ -65,7 +71,7 @@
             <div x-show="isOpen"
                  x-cloak
                  @click.away="isOpen = false"
-                 class="absolute overflow-hidden bg-gray-500 px-8 right-0 w-100 mt-0 z-20">
+                 class="absolute overflow-hidden bg-gray-500 py-4 px-10 right-0 w-100 z-20">
                 <a href="{{ url_for('account.profile', username=current_user.username) }}" class="block">
                     Profile
                 </a>
@@ -90,29 +96,27 @@
         {% include '_hamburger.jinja2' %}
     </div>
 
+
     <!-- Mobile menu -->
     <div class="md:hidden absolute z-10 justify-center mt-16 w-full">
         <div id="mobile-menu" class="mobile-menu absolute top-30 w-full"> <!-- add hidden here later -->
             <ul class="bg-gray-500 shadow-lg leading-9 font-bold h-screen">
-                <li class="border-b-2 border-white hover:bg-red-700 hover:text-white pl-4"><a
-                        href="{{ url_for('auth.logout') }}" class="block pl-7">
-                    Log Out
-                    </a>
+                <li class="border-b-2 border-white hover:bg-red-400 hover:text-white pl-4"><a
+                        href="{{ url_for('auth.logout') }}" class="block pl-7">Log Out</a>
                 </li>
 
-                <li class="border-b-2 border-white hover:bg-red-700 hover:text-white pl-4">
+                <li class="border-b-2 border-white hover:bg-red-400 hover:text-white pl-4">
                     <a href="{{ url_for('account.profile', username=current_user.username) }}" class="block pl-7">
                         Profile
                     </a>
                 </li>
-                <li class="border-b-2 border-white hover:bg-red-700 hover:text-white pl-4">
+                <li class="border-b-2 border-white hover:bg-red-400 hover:text-white pl-4">
                     <a href="{{ url_for('account.transactions', username=current_user.username) }}" class="block pl-16">
                         Orders
                     </a>
                 </li>
-                <li class="border-b-2 border-white hover:bg-red-700 hover:text-white pl-4">
+                <li class="border-b-2 border-white hover:bg-red-400 hover:text-white pl-4">
                     <a href="{{ url_for('products.wine') }}" class="block pl-16">
-                        Shop
                     </a>
                     <!-- Submenu starts -->
                     <ul class="bg-white text-gray-800 w-full">
@@ -131,14 +135,15 @@
                                 Rose
                             </a>
                         </li>
-                    </ul><!-- Submenu ends -->
-                </li>
-                <li class="border-b-2 border-white hover:bg-red-700 hover:text-white pl-4">
+                    </ul>
+                    <!-- Submenu ends -->
+                <li class="border-b-2 border-white hover:bg-red-400 hover:text-white pl-4">
                     <a href="{{ url_for('cart.cart', user_id=current_user.id) }}" class="block pl-7">
                         Cart ({{ quantity_total }})
                     </a>
                 </li>
             </ul>
         </div>
-    </div><!-- Mobile menu ends -->
+    </div>
+
 </nav>

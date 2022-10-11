@@ -1,123 +1,77 @@
 <div class="modal fade"
      id="item{{ bottle.id }}">
     <div class="modal-dialog  relative w-auto pointer-events-none">
-
         <div class="modal-content border-none relative w-full pointer-events-auto
          bg-clip-padding rounded-md outline-none py-12 ">
             <div class="grid grid-cols-2 md:gap-12 md:px-12  ">
                 <div>
-                    <h5 class="leading-normal" id="item{{ bottle.id }}Label">
-                        <a id="title" class="hover:underline flex font-black text-2xl  md:text-4xl py-4"
-                           href="{{ url_for('products.product_page',  bottles_id=bottle.id) }}">
-                            {{ bottle.product_name }} <br>
-                        </a>
-                    </h5>
+                    <div class="flex flex-col gap-2 pt-2">
+                        <!-- Title -->
+                        <h5 class="leading-normal">
+                            <a id="title" class="hover:underline flex font-black  text-3xl pl-4 md:py-4"
+                               href="{{ url_for('products.product_page',  bottles_id=bottle.id) }}">
+                                {{ bottle.product_name }}
+                            </a>
+                        </h5>
 
-                    <div class="flex flex-col md:gap-4 pt-2">
                         {% if bottle.inventory.quantity > 0 %}
-                            <span class="md:pl-4 text-lg  md:text-xl">(In Stock)</span>
+                            <span class="text-lg pl-4 md:text-xl">(In Stock)</span>
                         {% else %}
-                            <span class="md:pl-4  text-lg md:text-xl">(Out of Stock)</span>
+                            <span class="text-lg pl-4 md:text-xl">(Out of Stock)</span>
                         {% endif %}
                         {% if  bottle.description !="'-'" %}
-                            <div class="md:pl-4  text-lg  md:text-2xl text-red-700"><em>Featured Product</em>
+                            <div class="text-lg pl-4 md:text-2xl text-red-700"><em>Featured Product</em>
                             </div>
                         {% endif %}
                     </div>
+
                     {% include '_button_close_modal.jinja2' %}
 
                     <div class="modal-body relative  ">
                         <div class="w-full mb-14">
-                            <div class="flex flex-wrap rounded-lg py-3 bg-gray-400 border border-[#E4E4E4]">
-                                <span class="text-lg bg-gray-400  md:text-xl font-black rounded-md px-4 lg:px-6">
-                                    Wine Facts
-                                </span>
-                            </div>
+
                             <div>
-                                <div x-show="openTab === 1"
-                                     class="lg:hidden text-body-color text-base leading-relaxed py-1">
-                                    <ul class="main" style="list-style-type:none;">
-                                        <li class="my-1"><b>Vintage:</b> {{ bottle.year }}
-                                            <a href="#!"></a>
-                                        </li>
-                                        <li class="my-1"><b>Producer:</b> {{ bottle.producer_name }}
-                                            <a href="#!"></a>
-                                        </li>
-                                        <li class="my-1"><b>Type:</b> {{ bottle.color_name }}
-                                            <a href="#!"></a>
-                                        </li>
-                                        <li class="my-1"><b>Varietal:</b> {{ bottle.primary_grape }}
-                                            <a href="#!"></a>
-                                        </li>
-                                        <li class="my-1"><b>Country:</b> {{ bottle.country_name }}
-                                            <a href="#!"></a>
-                                        </li>
-                                        <li class="my-1"><b>Region:</b> {{ bottle.region_name }}
-                                            <a href="#!"></a>
-                                        </li>
-                                        <li class="my-1"><b>Appellation:</b> {{ bottle.appellation }}
-                                            <a href="#!"></a>
-                                        </li>
-                                        <li class="my-1"><b>Size:</b> {{ bottle.volume }}ml.
-                                            <a href="#!"></a>
-                                        </li>
-                                        <li class="my-1"><b>Proof:</b> {{ bottle.proof }}%
-                                            <a href="#!"></a>
-                                        </li>
-                                    </ul>
-                                </div>
 
-
-                                <div class="hidden text-sm md:text-lg lg:grid grid-col-2 md:grid-cols-6 divide-y-2 md:pl-2 flex-wrap backdrop: divide-y-reverse">
-                                    <div class="col-start-3 col-end-7"></div>
-                                    <div class="col-start-1 col-end-3 font-black py-2  px-1 ">
-                                        Vintage
+                                <div class="grid-col-2 md:grid-cols-3 flex-wrap divide-y-2 divide-y-reverse text-sm md:pl-4 md:text-lg md:grid">
+                                    <div class="col-start-1 col-end-3 text-lg rounded-md md:text-xl font-black pl-4 md:pl-0 lg:pl-4 py-2 bg-gray-400">
+                                        Wine Facts
                                     </div>
-                                    <div class="col-start-3 col-end-7 py-2 ">{{ bottle.year }}</div>
-
-                                    <div class="col-start-1 col-end-3 px-1 font-black py-2 ">
+                                    <div class="col-start-1 col-end-2 pl-4 md:pl-0 lg:pl-4 md:py-1 font-black">Vintage
+                                    </div>
+                                    <div class="col-start-2 col-end-3 pl-4 md:pl-0 md:py-1">{{ bottle.year }}</div>
+                                    <div class="col-start-1 col-end-2 pl-4 md:pl-0 lg:pl-4 md:py-1 font-black">
                                         Producer
                                     </div>
-                                    <div class="col-start-3 col-end-7 py-2 ">{{ bottle.producer_name }}</div>
-                                    <div class="col-start-1 col-end-3 font-black py-2 ">Type
+                                    <div class="col-start-2 col-end-3 pl-4 md:pl-0 md:py-1">{{ bottle.producer_name }}</div>
+                                    <div class="col-start-1 col-end-2 pl-4 md:pl-0 lg:pl-4 md:py-1 font-black">Type
                                     </div>
-                                    <div class="col-start-3 col-end-7 py-2 ">{{ bottle.color_name }}</div>
-
-                                    <div class="col-start-1 col-end-3 font-black py-2  px-1 ">
+                                    <div class="col-start-2 col-end-3 pl-4 md:pl-0 md:py-1">{{ bottle.color_name }}</div>
+                                    <div class="col-start-1 col-end-2 pl-4 md:pl-0 lg:pl-4 md:py-1 font-black">
                                         Varietal
                                     </div>
-                                    <div class="col-start-3 col-end-7 py-2 ">{{ bottle.primary_grape }}</div>
-                                    <div class="col-start-1 col-end-3 font-black py-2  px-1 ">
-                                        Country
+                                    <div class="col-start-2 col-end-3 pl-4 md:pl-0 md:py-1">{{ bottle.primary_grape }}</div>
+                                    <div class="col-start-1 col-end-2 pl-4 md:pl-0 lg:pl-4 md:py-1 font-black">Country
                                     </div>
-                                    <div class="col-start-3 col-end-7 py-2 ">{{ bottle.country_name }}</div>
-
-                                    <div class="col-start-1 col-end-3 font-black py-2  px-1 ">
-                                        Region
+                                    <div class="col-start-2 col-end-3 pl-4 md:pl-0 md:py-1">{{ bottle.country_name }}</div>
+                                    <div class="col-start-1 col-end-2 pl-4 md:pl-0 lg:pl-4 md:py-1 font-black">Region
                                     </div>
-                                    <div class="col-start-3 col-end-7 py-2 ">{{ bottle.region_name }}</div>
-                                    <div class="col-start-1 col-end-3 font-black py-2 ">
-                                        Appellation
+                                    <div class="col-start-2 col-end-3 pl-4 md:pl-0 md:py-1">{{ bottle.region_name }}</div>
+                                    <div class="col-start-1 col-end-2 pl-4 md:pl-0 lg:pl-4 md:py-1 font-black">Size
                                     </div>
-                                    <div class="col-start-3 col-end-7 py-2 ">{{ bottle.appellation }}</div>
-                                    <div class="col-start-1 col-end-3 font-black py-2  px-1 ">
-                                        Size
+                                    <div class="col-start-2 col-end-3 pl-4 md:pl-0 md:py-1">{{ bottle.volume }} ml.
                                     </div>
-                                    <div class="col-start-3 col-end-7 py-2 ">{{ bottle.volume }} ml.
+                                    <div class="col-start-1 col-end-2 pl-4 md:pl-0 lg:pl-4 md:py-1 font-black">Proof
                                     </div>
-                                    <div class="col-start-1 col-end-3 font-black py-2  px-1 ">
-                                        Proof
-                                    </div>
-                                    <div class="col-start-3 col-end-7 py-2 ">{{ bottle.proof }}%</div>
+                                    <div class="col-start-2 col-end-3 pl-4 md:pl-0 md:py-1">{{ bottle.proof }}%</div>
                                 </div>
-                                {##}
-                                <form class="md:pl-4 py-2 md:py-4 text-md"
+
+                                <form class="pl-6 lg:py-4 md:py-4 text-md"
                                       action="{{ url_for('cart.add_to_cart', bottles_id=bottle.id) }}" method="POST">
-                                    <div id="modal-price-wrapper" class="md:pt-10 pb-2 md:pb-4">
-                                        <span class="text-xl md:text-3xl" itemprop="price">${{ bottle.price }}
+                                    <div id="modal-price-wrapper" class=" pt-4  pb-6">
+                                        <span class="text-2xl md:text-3xl" itemprop="price">${{ bottle.price }}
                                         </span>
                                     </div>
-                                    <div class="panel-footer text-base md:text-lg">
+                                    <div class="panel-footer text-lg md:text-lg">
                                         {% if bottle.inventory.quantity > 0 %}
                                             {% include '_button-add.jinja2' %}
                                         {% endif %}
@@ -129,7 +83,7 @@
                     </div>
                 </div>
 
-                <div class="flex justify-center flex-wrap p-8">
+                <div class="flex justify-center   p-8">
                     <a class="w-100 md:w-1/2" href="{{ url_for('products.product_page', bottles_id=bottle.id) }}">
                         <img src="{{ bottle.image }}" alt="{{ bottle.product_name }}">
                     </a>

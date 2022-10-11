@@ -1,0 +1,25 @@
+<div id="pages-nav-wrapper" class="bg-white py-14 p-4 flex items-center justify-center flex-wrap mt-12">
+    <nav id="pages-nav" aria-label="Page navigation">
+        <ul class="inline-flex">
+            {% if prev_url %}
+                <li>
+                    {% include '_button-previous.jinja2' %}
+                <li>
+                    {% else %}
+                <li>
+                    {% include '_button-previous-dead.jinja2' %}
+                </li>
+            {% endif %}
+
+            {% if next_url %}
+                <li>
+                    {% include '_button-next.jinja2' %}
+                </li>
+            {% else %}
+                <li>
+                    {% include '_button-next-dead.jinja2' %}
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+</div>

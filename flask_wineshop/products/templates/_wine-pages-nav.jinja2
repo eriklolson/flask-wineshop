@@ -1,0 +1,66 @@
+<div id="pages-nav-wrapper" class="bg-white py-14 p-4 flex items-center justify-center flex-wrap mt-12">
+    <nav id="pages-nav" aria-label="Page navigation">
+        <ul class="inline-flex">
+            {% if prev_url %}
+                <li>
+                    {% include '_button-previous.jinja2' %}
+                <li>
+                    {% else %}
+                <li>
+                    {% include '_button-previous-dead.jinja2' %}
+                </li>
+            {% endif %}
+            {% if next_url %}
+                <li>
+                    <button class="px-4 py-2 text-black-600 transition-colors duration-150 bg-white border border-r-0 border-orange-600 focus:shadow-outline"
+                            onclick="window.location.href='/wine?page=1';">1
+                    </button>
+                </li>
+            {% endif %}
+            {% if next_url %}
+                <li>
+                    <button class="px-4 py-2 text-black-600 transition-colors duration-150 bg-white border border-r-0 border-orange-600 focus:shadow-outline"
+                            onclick="window.location.href='/wine?page=2';">2
+                    </button>
+                </li>
+            {% endif %}
+            {% if next_url %}
+                <li>
+                    <button class="px-4 py-2 text-black-600 transition-colors duration-150 bg-white border border-r-0 border-orange-600 focus:shadow-outline"
+                            onclick="window.location.href='/wine?page=3';">3
+                    </button>
+                </li>
+            {% endif %}
+            {% if next_url %}
+                <li>
+                    <button class="px-4 py-2 text-black-600 transition-colors duration-150 bg-white border border-r-0 border-orange-600 focus:shadow-outline"
+                            onclick="window.location.href='/wine?page=4';">4
+                    </button>
+                </li>
+            {% endif %}
+            {% if next_url %}
+                <li>
+                    <button class="px-4 py-2 text-black-600 transition-colors duration-150 bg-white border border-r-0 border-orange-600 focus:shadow-outline"
+                            onclick="window.location.href='/wine?page=5';">5
+                    </button>
+                </li>
+            {% endif %}
+            {% if next_url %}
+                <li>
+                    <button class="px-4 py-2 text-black-600 transition-colors duration-150 bg-white border border-r-0 border-orange-600 focus:shadow-outline"
+                            onclick="window.location.href='/wine?page=6';">6
+                    </button>
+                </li>
+            {% endif %}
+            {% if next_url %}
+                <li>
+                    {% include '_button-next.jinja2' %}
+                </li>
+            {% else %}
+                <li>
+                    {% include '_button-next-dead.jinja2' %}
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+</div>

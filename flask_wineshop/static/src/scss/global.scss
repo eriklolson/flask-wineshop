@@ -91,7 +91,6 @@ header {
           color: white;
           display: block;
           padding: 15px 14px;
-          text-transform: uppercase;
 
           &:hover {
             color: themes.$orange;
@@ -108,7 +107,7 @@ header {
           }
 
           &:hover {
-            color: orange;
+            color: themes.$orange;
           }
 
           li {
