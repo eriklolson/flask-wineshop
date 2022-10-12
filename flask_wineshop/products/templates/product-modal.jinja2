@@ -5,7 +5,7 @@
          bg-clip-padding rounded-md outline-none py-12 ">
             <div class="grid grid-cols-2 md:gap-12 md:px-12  ">
                 <div>
-                    <div class="flex flex-col gap-2 pt-2">
+                    <div class="flex flex-col gap-2 md:gap-4 pt-2">
                         <!-- Title -->
                         <h5 class="leading-normal">
                             <a id="title" class="hover:underline flex font-black  text-3xl pl-4 md:py-4"
@@ -34,38 +34,41 @@
                                     <div class="col-start-1 col-end-3 text-lg rounded-md md:text-xl font-black pl-4 md:pl-0 lg:pl-4 py-2 bg-gray-400">
                                         Wine Facts
                                     </div>
-                                    <div class="col-start-1 col-end-2 pl-4 md:pl-0 lg:pl-4 md:py-1 font-black">Vintage
+                                    <div class="col-start-1 col-end-2 pl-4 md:pl-0 lg:pl-4 lg:py-1 font-black">Vintage
                                     </div>
-                                    <div class="col-start-2 col-end-3 pl-4 md:pl-0 md:py-1">{{ bottle.year }}</div>
-                                    <div class="col-start-1 col-end-2 pl-4 md:pl-0 lg:pl-4 md:py-1 font-black">
+                                    <div class="col-start-2 col-end-3 pl-4 md:pl-0 lg:py-1">{{ bottle.year }}</div>
+                                    <div class="col-start-1 col-end-2 pl-4 md:pl-0 lg:pl-4 lg:py-1 font-black">
                                         Producer
                                     </div>
-                                    <div class="col-start-2 col-end-3 pl-4 md:pl-0 md:py-1">{{ bottle.producer_name }}</div>
-                                    <div class="col-start-1 col-end-2 pl-4 md:pl-0 lg:pl-4 md:py-1 font-black">Type
+                                    <div class="col-start-2 col-end-3 pl-4 md:pl-0 lg:py-1">{{ bottle.producer_name }}</div>
+                                    <div class="col-start-1 col-end-2 pl-4 md:pl-0 lg:pl-4 lg:py-1 font-black">Type
                                     </div>
-                                    <div class="col-start-2 col-end-3 pl-4 md:pl-0 md:py-1">{{ bottle.color_name }}</div>
-                                    <div class="col-start-1 col-end-2 pl-4 md:pl-0 lg:pl-4 md:py-1 font-black">
+                                    <div class="col-start-2 col-end-3 pl-4 md:pl-0 lg:py-1">{{ bottle.color_name }}</div>
+                                    <div class="col-start-1 col-end-2 pl-4 md:pl-0 lg:pl-4 lg:py-1 font-black">
                                         Varietal
                                     </div>
-                                    <div class="col-start-2 col-end-3 pl-4 md:pl-0 md:py-1">{{ bottle.primary_grape }}</div>
-                                    <div class="col-start-1 col-end-2 pl-4 md:pl-0 lg:pl-4 md:py-1 font-black">Country
+                                    <div class="col-start-2 col-end-3 pl-4 md:pl-0 lg:py-1">{{ bottle.primary_grape }}</div>
+                                    <div class="col-start-1 col-end-2 pl-4 md:pl-0 lg:pl-4 lg:py-1 font-black">Country
                                     </div>
-                                    <div class="col-start-2 col-end-3 pl-4 md:pl-0 md:py-1">{{ bottle.country_name }}</div>
-                                    <div class="col-start-1 col-end-2 pl-4 md:pl-0 lg:pl-4 md:py-1 font-black">Region
+                                    <div class="col-start-2 col-end-3 pl-4 md:pl-0 lg:py-1">{{ bottle.country_name }}</div>
+                                    <div class="col-start-1 col-end-2 pl-4 md:pl-0 lg:pl-4 lg:py-1 font-black">Region
                                     </div>
-                                    <div class="col-start-2 col-end-3 pl-4 md:pl-0 md:py-1">{{ bottle.region_name }}</div>
-                                    <div class="col-start-1 col-end-2 pl-4 md:pl-0 lg:pl-4 md:py-1 font-black">Size
+                                    <div class="col-start-2 col-end-3 pl-4 md:pl-0 lg:py-1">{{ bottle.region_name }}</div>
+                                       <div class="col-start-1 col-end-2 pl-4 md:pl-0 lg:pl-4 lg:py-1 font-black">Appellation
                                     </div>
-                                    <div class="col-start-2 col-end-3 pl-4 md:pl-0 md:py-1">{{ bottle.volume }} ml.
+                                    <div class="col-start-2 col-end-3 pl-4 md:pl-0 lg:py-1">{{ bottle.appellation }}</div>
+                                    <div class="col-start-1 col-end-2 pl-4 md:pl-0 lg:pl-4 lg:py-1 font-black">Size
                                     </div>
-                                    <div class="col-start-1 col-end-2 pl-4 md:pl-0 lg:pl-4 md:py-1 font-black">Proof
+                                    <div class="col-start-2 col-end-3 pl-4 md:pl-0 lg:py-1">{{ bottle.volume }} ml.
                                     </div>
-                                    <div class="col-start-2 col-end-3 pl-4 md:pl-0 md:py-1">{{ bottle.proof }}%</div>
+                                    <div class="col-start-1 col-end-2 pl-4 md:pl-0 lg:pl-4 lg:py-1 font-black">Proof
+                                    </div>
+                                    <div class="col-start-2 col-end-3 pl-4 md:pl-0 lg:py-1">{{ bottle.proof }}%</div>
                                 </div>
 
-                                <form class="pl-6 lg:py-4 md:py-4 text-md"
+                                <form class="pl-2 lg:py-4 md:flex md:flex-col md:justified-center md:py-4 text-md"
                                       action="{{ url_for('cart.add_to_cart', bottles_id=bottle.id) }}" method="POST">
-                                    <div id="modal-price-wrapper" class=" pt-4  pb-6">
+                                    <div id="modal-price-wrapper" class=" pl-1 pt-4  pb-6">
                                         <span class="text-2xl md:text-3xl" itemprop="price">${{ bottle.price }}
                                         </span>
                                     </div>
@@ -81,7 +84,7 @@
                     </div>
                 </div>
 
-                <div class="mx-auto  p-10">
+                <div class="mx-auto  self-center lg:p-10">
                     <a class="w-100 md:w-1/2" href="{{ url_for('products.product_page', bottles_id=bottle.id) }}">
                         <img src="{{ bottle.image }}" alt="{{ bottle.product_name }}">
                     </a>
