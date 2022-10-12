@@ -17,7 +17,7 @@
                             <div>
                                 <div class="relative pl-10">
                                     <br>
-                                    <h1 class="md:text-5xl font-black leading-7 text-gray-900 sm:text-1xl">
+                                    <h1 class="md:text-5xl font-black leading-7 text-gray-900 text-4xl">
                                         {{ product.product_name }}</h1>
                                     <div class="flex flex-col gap-4 l-4 pt-6 ">
                                         {% if product.inventory.quantity > 0 %}
@@ -55,54 +55,54 @@
                                         <div class="w-full pt-4 px-5">
                                             <div z-50 x-show="openTab === 1">
                                                 <br>
-                                                <div class="font-base grid grid-cols-6 divide-y-2 backdrop: divide-y-reverse">
+ <div class="font-base grid grid-cols-6 divide-y-2 backdrop: divide-y-reverse text-xl">
                                                     <div class="col-start-3 col-end-7"></div>
-                                                    <div class="col-start-1 col-end-3 font-black py-2 text-base">
+                                                    <div class="col-start-1 col-end-3 font-black py-2 ">
                                                         Vintage
                                                     </div>
-                                                    <div class="col-start-3 col-end-7 py-2 text-base">{{ product.year }}</div>
+                                                    <div class="col-start-3 col-end-7 py-2 ">{{ product.year }}</div>
 
-                                                    <div class="col-start-1 col-end-3 font-black py-2 text-base">
+                                                    <div class="col-start-1 col-end-3 font-black py-2 ">
                                                         Producer
                                                     </div>
-                                                    <div class="col-start-3 col-end-7 py-2 text-base">{{ product.producer_name }}</div>
-                                                    <div class="col-start-1 col-end-3 font-black py-2 text-base">Wine
+                                                    <div class="col-start-3 col-end-7 py-2 ">{{ product.producer_name }}</div>
+                                                    <div class="col-start-1 col-end-3 font-black py-2 ">Wine
                                                         Type
                                                     </div>
-                                                    <div class="col-start-3 col-end-7 py-2 text-base">{{ product.color_name }}</div>
+                                                    <div class="col-start-3 col-end-7 py-2 ">{{ product.color_name }}</div>
 
-                                                    <div class="col-start-1 col-end-3 font-black py-2 text-base">
+                                                    <div class="col-start-1 col-end-3 font-black py-2 ">
                                                         Varietal
                                                     </div>
-                                                    <div class="col-start-3 col-end-7 py-2 text-base">{{ product.primary_grape }}</div>
-                                                    <div class="col-start-1 col-end-3 font-black py-2 text-base">All
+                                                    <div class="col-start-3 col-end-7 py-2 ">{{ product.primary_grape }}</div>
+                                                    <div class="col-start-1 col-end-3 font-black py-2 ">All
                                                         Grapes
                                                     </div>
-                                                    <div class="col-start-3 col-end-7 py-2 text-base">{{ product.all_grape }}</div>
-                                                    <div class="col-start-1 col-end-3 font-black py-2 text-base">
+                                                    <div class="col-start-3 col-end-7 py-2 ">{{ product.all_grape }}</div>
+                                                    <div class="col-start-1 col-end-3 font-black py-2 ">
                                                         Country
                                                     </div>
-                                                    <div class="col-start-3 col-end-7 py-2 text-base">{{ product.country_name }}</div>
+                                                    <div class="col-start-3 col-end-7 py-2 ">{{ product.country_name }}</div>
 
-                                                    <div class="col-start-1 col-end-3 font-black py-2 text-base">
+                                                    <div class="col-start-1 col-end-3 font-black py-2 ">
                                                         Region
                                                     </div>
-                                                    <div class="col-start-3 col-end-7 py-2 text-base">{{ product.region_name }}</div>
+                                                    <div class="col-start-3 col-end-7 py-2 ">{{ product.region_name }}</div>
 
-                                                    <div class="col-start-1 col-end-3 font-black py-2 text-base">
+                                                    <div class="col-start-1 col-end-3 font-black py-2 ">
                                                         Appellation
                                                     </div>
-                                                    <div class="col-start-3 col-end-7 py-2 text-base">{{ product.appellation }}</div>
-                                                    <div class="col-start-1 col-end-3 font-black py-2 text-base">
+                                                    <div class="col-start-3 col-end-7 py-2 ">{{ product.appellation }}</div>
+                                                    <div class="col-start-1 col-end-3 font-black py-2 ">
                                                         Bottle Size
                                                     </div>
-                                                    <div class="col-start-3 col-end-7 py-2 text-base">{{ product.volume }}
+                                                    <div class="col-start-3 col-end-7 py-2 ">{{ product.volume }}
                                                         ml.
                                                     </div>
-                                                    <div class="col-start-1 col-end-3 font-black py-2 text-base">
+                                                    <div class="col-start-1 col-end-3 font-black py-2 ">
                                                         Proof/ABV
                                                     </div>
-                                                    <div class="col-start-3 col-end-7 py-2 text-base">{{ product.proof }}%</div>
+                                                    <div class="col-start-3 col-end-7 py-2 ">{{ product.proof }}%</div>
                                                 </div>
                                                 <br>
 
