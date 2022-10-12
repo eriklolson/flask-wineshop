@@ -29,10 +29,8 @@
 
                     <div class="modal-body relative  ">
                         <div class="w-full mb-14">
-
                             <div>
-
-                                <div class="grid-col-2 md:grid-cols-3 flex-wrap divide-y-2 divide-y-reverse text-sm md:pl-4 md:text-lg md:grid">
+                                <div class="grid-col-2 lg:grid lg:grid-cols-3 flex-wrap divide-y-2 divide-y-reverse md:pl-4 text-lg">
                                     <div class="col-start-1 col-end-3 text-lg rounded-md md:text-xl font-black pl-4 md:pl-0 lg:pl-4 py-2 bg-gray-400">
                                         Wine Facts
                                     </div>
@@ -83,7 +81,7 @@
                     </div>
                 </div>
 
-                <div class="flex justify-center   p-8">
+                <div class="mx-auto  p-10">
                     <a class="w-100 md:w-1/2" href="{{ url_for('products.product_page', bottles_id=bottle.id) }}">
                         <img src="{{ bottle.image }}" alt="{{ bottle.product_name }}">
                     </a>
