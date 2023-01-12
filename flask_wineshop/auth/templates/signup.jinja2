@@ -1,7 +1,5 @@
 {% extends "layout.jinja2" %}
-
 {% block title %}Register{% endblock %}
-
 {% block pagestyles %}
     {% assets "auth_style_bundle" %}
         <link href="{{ ASSET_URL }}" rel="stylesheet" type="text/css">
@@ -10,8 +8,6 @@
 
 {% block content %}
 
-
-
     <section class="container w-11/12 h-screen flex text-white ">
         {#    <section class=" flex items-stretch text-white ">#}
         <div class="lg:flex w-1/2 hidden bg-gray-500 bg-no-repeat bg-cover relative items-center"
@@ -19,26 +15,27 @@
             <div class="absolute  opacity-60 inset-0 z-0"></div>
             <div class="w-full px-24 z-10">
                 <h1 class="text-5xl font-bold text-left tracking-wide">{{ title }}</h1>
-                <p class="text-3xl my-4">get special deals on select wines.</p>
+                <p class="font-black text-4xl my-4">Sign up to order wines</p>
             </div>
         </div>
 
-        <div class="lg:w-1/2 relative  w-full flex items-center justify-center text-center md:px-16 px-0 z-0">
+        <div class="lg:w-1/2 flex justify-center  relative w-full text-center md:px-16 px-0 z-0">
             <div class=" lg:hidden z-10 absolute inset-0 bg-gray-500 bg-no-repeat bg-cover items-center"
                  style="background-image:  url('{{ url_for('.static', filename='img/pour.jpg')}}');">
                 <div class="absolute bg-black opacity-60 inset-0 z-0"></div>
             </div>
-            <div class="w-full py-6 z-20">
-                <img class="w-16 inline-block" src="{{ url_for('static', filename='img/snail-logo.png') }}" alt="logo"/>
-                <h2 class="my-16 inline-block">
+
+            <div class="w-full  z-20">
+                <img class="w-16 inline-block" src="{{ url_for('static', filename='svg/bottleandglass.svg') }}" alt="logo"/>
+                <h2 class="my-16 font-black text-4xl text-white lg:text-black inline-block">
                     Register your account today
                 </h2>
                 <form action="{{ url_for('auth.signup') }}" method="POST" autocomplete="off"
-                      class="sm:w-2/3 w-full px-4 lg:px-0 mx-auto">
+                      class="sm:w-2/3 w-full px-4 lg:px-0 mx-auto gid-span">
                     {{ form.csrf_token }}
-                    <div class="mb-4">
-                        <fieldset class="name text-black">
-                            {{ form.username.label(class="text-black") }}
+
+                        <fieldset class="name text-black mb-4">
+                            {{ form.username.label(class="font-black") }}
                             {{ form.username(placeholder='John Smith') }}
                             {% if form.username.errors %}
                                 <ul class="errors">
@@ -47,10 +44,9 @@
                                 </ul>
                             {% endif %}
                         </fieldset>
-                    </div>
 
-                    <fieldset class="email text-black">
-                        {{ form.email.label(class="text-black") }}
+                    <fieldset class="email text-black mb-4">
+                        {{ form.email.label(class="font-black") }}
                         {{ form.email(placeholder='youremail@example.com') }}
                         {% if form.email.errors %}
                             <ul class="errors">
@@ -60,9 +56,8 @@
                         {% endif %}
                     </fieldset>
 
-
                     <fieldset class="password text-black">
-                        {{ form.password.label(class="text-black") }}
+                        {{ form.password.label(class="font-black") }}
                         {{ form.password }}
                         {% if form.password.errors %}
                             <ul class="errors">
@@ -73,7 +68,7 @@
                     </fieldset>
 
                     <fieldset class="confirmPassword text-black">
-                        {{ form.confirmPassword.label(class="text-black") }}
+                        {{ form.confirmPassword.label(class="font-black") }}
                         {{ form.confirmPassword }}
                         {% if form.confirmPassword.errors %}
                             <ul class="errors">

@@ -2,8 +2,9 @@
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
 from flask import flash
+from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin, current_user
-from . import db
+from .extensions import db
 import json
 
 

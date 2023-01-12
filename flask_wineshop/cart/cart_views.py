@@ -1,11 +1,13 @@
 """Routes for shopping cart and order"""
 from flask import abort, request, render_template, redirect, url_for, flash
 from flask_login import login_required, current_user
+from sqlalchemy import desc
 from datetime import datetime
 
-from . import bp
+from flask_wineshop.extensions import db
 from .forms import *
-from flask_wineshop.models import Cart, OrderedItems, Transactions, Stocks, Order, db
+from flask_wineshop.models import Cart, OrderedItems, Transactions, Stocks, Order
+from flask_wineshop.cart import bp
 
 
 @bp.route('/cart/<int:user_id>', methods=['GET', 'POST'])
@@ -85,15 +87,15 @@ def create_order(order_total):
             db.session.add(stock_item)
             db.session.flush()
             db.session.commit()
-    order_id = db.session.query(Order.id).filter(Order.user_id == user_id).order_by(Order.id.desc()).first()
-    order_id = order_id[0]
+    order_id = db.session.query(Order.id).filter(Order.user_id == user_id)
+    order_id.order_by(Order.id.desc()).first()
     card_number = request.form.get('card_number')
     card_type = request.form.get('card_type')
     order = Order(user_id=user_id, order_date=order_date, order_total=order_total)
     db.session.add(order)
     db.session.flush()
     db.session.commit()
-
+    order_id = Order.get_order_id(user_id)
     OrderedItems.update_ordered_items(user_id, order_id)
     Transactions.update_transactions(order_id, order_date, order_total, card_number, card_type)
     Cart.remove_ordered_items_from_cart(user_id)

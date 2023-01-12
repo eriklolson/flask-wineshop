@@ -2,10 +2,9 @@
 
 {% block content %}
 
-<link href="{{ url_for('account.static', filename='css/account.css') }}" rel="stylesheet">
+    <link href="{{ url_for('account.static', filename='css/account.css') }}" rel="stylesheet">
 
-{#    <div class="container mx-auto my-5 p-5">#}
-        <div class="container mx-auto pt-12 my-5 min-h-screen w-11/12">
+    <div class="container mx-auto pt-12 my-5 min-h-screen w-11/12">
         <div class="md:flex no-wrap md:-mx-2 ">
             <!-- Left Side -->
             <div class="w-full md:w-3/12 md:mx-2">
@@ -13,12 +12,11 @@
                 <div class="bg-white p-3 border-t-4 border-red-600">
                     <div class="image overflow-hidden">
                         <img class="h-auto w-full mx-auto"
-                        src="{{ url_for('static', filename='svg/user_icon.svg') }}"
-                            alt="">
+                             src="{{ url_for('static', filename='svg/user_icon.svg') }}"
+                             alt="">
                     </div>
-{#                    <h1 class="text-gray-900 font-bold text-xl leading-8 my-1">{{  current_user.username }}</h1>#}
                     <ul
-                        class="bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-3 divide-y rounded shadow-sm">
+                            class="bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-3 divide-y rounded shadow-sm">
                         <li class="flex items-center py-3">
                             <span>Status</span>
                             <span class="ml-auto"><span
@@ -40,22 +38,18 @@
 
                             <div class="grid grid-cols-2">
                                 <div class="px-4 py-2 ">Username:</div>
-                                <div class="px-4 py-2">{{  current_user.username }}</div>
+                                <div class="px-4 py-2">{{ current_user.username }}</div>
                             </div>
-{#                            <div class="grid grid-cols-2">#}
-{#                                <div class="px-4 py-2 ">Fullname</div>#}
-{#                                <div class="px-4 py-2">{{  current_user.username }}</div>#}
-{#                            </div>#}
-                               <div class="grid grid-cols-2">
+                            <div class="grid grid-cols-2">
                                 <div class="px-4 py-2">User ID:</div>
                                 <div class="px-4 py-2">
-                                    <a class="text-blue-800">{{  current_user.id }}</a>
+                                    <a class="text-blue-800">{{ current_user.id }}</a>
                                 </div>
                             </div>
                             <div class="grid grid-cols-2">
                                 <div class="px-4 py-2 ">Email:</div>
                                 <div class="px-4 py-2">
-                                    <a class="text-blue-800">{{  current_user.email }}</a>
+                                    <a class="text-blue-800">{{ current_user.email }}</a>
                                 </div>
                             </div>
                         </div>
@@ -72,18 +66,19 @@
                             </div>
                             <ul class="list-inside space-y-2">
                                 <li>
-                                    <a href="{{ url_for('account.transactions', username=current_user.username) }}" class="text-red-700">Order History</a>
+                                    <a href="{{ url_for('account.transactions', username=current_user.username) }}"
+                                       class="text-red-700">Order History</a>
                                 </li>
-{#                                <li>#}
-{#                                    <a class="text-red-700">Edit Profile</a>#}
-{#                                </li>#}
+                                {#                                <li>#}
+                                {#                                    <a class="text-red-700">Edit Profile</a>#}
+                                {#                                </li>#}
                             </ul>
                         </div>
 
+                    </div>
+                    <!-- End of profile tab -->
                 </div>
-                <!-- End of profile tab -->
             </div>
         </div>
     </div>
-</div>
 {% endblock %}

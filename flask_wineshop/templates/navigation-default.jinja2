@@ -1,29 +1,27 @@
 <nav id="main-nav"
-     class="w-full md:container md:w-11/12 flex flex-wrap mx-auto justify-between items-center
-      md:space-x-9 py-6 px-4 text-white">
+     class="w-full md:container md:w-11/12 flex flex-wrap mx-auto justify-between items-center py-6 text-white">
     <!-- logo  max-w-screen-xl-->
     <div id="site-title" class="flex items-center flex-shrink-0">
         <a class="flex" href="{{ url_for('home.index') }}">
-            <img class="mr-3 self-center h-12" src="{{ url_for('static', filename='img/snail-logo.png') }}"
-                 alt="snail-logo"/>
-            <span class="self-center upper whitespace-nowrap "> Slow Wine West </span>
+            <img class="self-center h-12" src="{{ url_for('static', filename='svg/bottleandglass.svg') }}"
+                 alt="logo"/>
+            <span class="self-center upper whitespace-nowrap "> Flask Wineshop </span>
         </a>
     </div>
     <!-- space -->
     <div class="hidden sm:flex flex-1">&nbsp;</div>
     <!-- primary nav -->
-    <ul id="nav-content" class="hidden sm:flex ml-auto space-x-15 items-center">
+    <ul id="nav-content" class="hidden sm:flex ml-auto font-black items-center">
         <li x-data="{ isOpen: false}"
             @mouseleave="isOpen = false"
-            class="relative pr-8 hover:bg-gray-500">
-
+            class="relative lg:pr-8 hover:bg-gray-500">
             <a @mouseover="isOpen = !isOpen"
                @keydown.escape="isOpen = false"
                href="{{ url_for('products.wine') }}"
                class="uppercase">
                 <img @mouseover="isOpen = !isOpen"
                      @keydown.escape="isOpen = false"
-                     class="filter-white self-center w-10 h-10"
+                     class="inline-block filter-white w-10 h-10"
                      src="{{ url_for('static', filename='svg/wine-icon.svg') }}"
                      alt="wine-icon"/>
                 Shop
@@ -50,11 +48,10 @@
         </li>
     </ul>
     <!-- Utility Nav -->
-    <ul class="hidden pace-x-15 pr-8 sm:flex items-center">
+    <ul class="hidden font-black pr-8 sm:flex items-center">
         <li x-data="{ isOpen: false }"
             @mouseleave="isOpen = false"
             class="relative pr-8 text-white hover:bg-gray-500">
-
             <a @mouseover="isOpen = !isOpen"
                @keydown.escape="isOpen = false"
                href="{{ url_for('auth.login') }}"
@@ -62,7 +59,7 @@
                 <img @mouseover="isOpen = !isOpen"
                      @keydown.escape="isOpen = false"
                      src="{{ url_for('static', filename='svg/user_icon.svg') }}"
-                     class="filter-white w-10 w-10" alt="user-icon"/>
+                     class="inline-block filter-white w-10 h-10" alt="user-icon"/>
                 Sign In
             </a>
             <!-- Dropdown menu 2 -->
@@ -77,7 +74,8 @@
         </li>
         <li class="pr-8">
             <a href="{{ url_for('auth.login') }}">
-                <img class="w-10 w-10 filter-white" src="{{ url_for('static', filename='svg/cart_icon.svg') }}"
+                <img class="inline-block filter-white w-10 h-10"
+                     src="{{ url_for('static', filename='svg/cart_icon.svg') }}"
                      alt="cart-icon"/>
                 ({{ quantity_total }})
             </a>
@@ -91,8 +89,8 @@
     </div>
 
     <!-- Mobile menu -->
-    <div class="md:hidden absolute z-10 justify-center mt-16 w-full">
-        <div id="mobile-menu" class="mobile-menu absolute top-30 w-full"> <!-- add hidden here later -->
+    <div class="md:hidden absolute z-10 justify-center mt-24 w-full">
+        <div id="mobile-menu" class="mobile-menu absolute top-30 mt-8 w-full">
             <ul class="bg-gray-500 shadow-lg leading-9 font-bold h-screen">
                 <li class="border-b-2 border-white hover:bg-red-400 hover:text-white pl-4">
                     <a href="{{ url_for('auth.login') }}" class="block pl-7">

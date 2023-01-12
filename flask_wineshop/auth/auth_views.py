@@ -4,9 +4,10 @@ from flask_login import current_user, login_required, login_user, logout_user
 
 from flask_wineshop import login_manager
 from flask_wineshop.models import User, Cart
-from . import bp
-from .forms import SignupForm, LoginForm
+from flask_wineshop.extensions import db
 
+from .forms import SignupForm, LoginForm
+from flask_wineshop.auth import bp
 
 @login_manager.user_loader
 def user_loader(id):

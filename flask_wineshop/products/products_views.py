@@ -2,9 +2,10 @@ from flask import url_for, request, render_template
 from sqlalchemy import desc
 from flask_login import current_user
 
-from flask_wineshop.models import Bottles, Countries, Regions, Cart, db
-from . import bp
+from flask_wineshop.models import Bottles, Countries, Regions, Cart
+from flask_wineshop.extensions import db
 from flask import current_app as app
+from flask_wineshop.products import bp
 
 
 @bp.route('/product-page/<int:bottles_id>')
@@ -24,9 +25,8 @@ def product_page(bottles_id):
 def wine():
     page = request.args.get('page', 1, type=int)
     quantity_total = Cart.get_quantity_total(current_user)
-
     bottles = Bottles.query.order_by(desc(Bottles.description)).paginate(
-        page, app.config['WINES_PER_PAGE'], False)
+        page=page, per_page=app.config['WINES_PER_PAGE'], error_out=False)
     colors = Bottles.query.with_entities(Bottles.color_name).distinct().order_by(Bottles.color_name.asc())
     varietals = Bottles.query.with_entities(Bottles.primary_grape).distinct().order_by(Bottles.primary_grape.asc())
     countries = Countries.query.with_entities(Countries.country_name).distinct().order_by(Countries.country_name.asc())
@@ -43,7 +43,7 @@ def color(color_name):
     page = request.args.get('page', 1, type=int)
     quantity_total = Cart.get_quantity_total(current_user)
     bottles = db.session.query(Bottles).filter_by(color_name=color_name).paginate(
-        page, app.config['WINES_PER_PAGE'], False)
+        page=page, per_page=app.config['WINES_PER_PAGE'], error_out=False)
     colors = Bottles.query.with_entities(Bottles.color_name).distinct().order_by(Bottles.color_name.asc())
     varietals = Bottles.query.with_entities(Bottles.primary_grape).distinct().order_by(Bottles.primary_grape.asc())
     countries = Countries.query.with_entities(Countries.country_name).distinct().order_by(Countries.country_name.asc())
@@ -60,7 +60,7 @@ def varietal(primary_grape):
     page = request.args.get('page', 1, type=int)
     quantity_total = Cart.get_quantity_total(current_user)
     bottles = db.session.query(Bottles).filter_by(primary_grape=primary_grape).paginate(
-        page, app.config['WINES_PER_PAGE'], False)
+        page=page, per_page=app.config['WINES_PER_PAGE'], error_out=False)
     colors = Bottles.query.with_entities(Bottles.color_name).distinct().order_by(Bottles.color_name.asc())
     varietals = Bottles.query.with_entities(Bottles.primary_grape).distinct().order_by(Bottles.primary_grape.asc())
     countries = Countries.query.with_entities(Countries.country_name).distinct().order_by(Countries.country_name.asc())
@@ -77,7 +77,7 @@ def country(country_name):
     page = request.args.get('page', 1, type=int)
     quantity_total = Cart.get_quantity_total(current_user)
     bottles = db.session.query(Bottles).filter_by(country_name=country_name).paginate(
-        page, app.config['WINES_PER_PAGE'], False)
+        page=page, per_page=app.config['WINES_PER_PAGE'], error_out=False)
     colors = Bottles.query.with_entities(Bottles.color_name).distinct().order_by(Bottles.color_name.asc())
     varietals = Bottles.query.with_entities(Bottles.primary_grape).distinct().order_by(Bottles.primary_grape.asc())
     countries = Countries.query.with_entities(Countries.country_name).distinct().order_by(Countries.country_name.asc())
@@ -94,7 +94,7 @@ def region(region_name):
     page = request.args.get('page', 1, type=int)
     quantity_total = Cart.get_quantity_total(current_user)
     bottles = db.session.query(Bottles).filter_by(region_name=region_name).paginate(
-        page, app.config['WINES_PER_PAGE'], False)
+        page=page, per_page=app.config['WINES_PER_PAGE'], error_out=False)
     colors = Bottles.query.with_entities(Bottles.color_name).distinct().order_by(Bottles.color_name.asc())
     varietals = Bottles.query.with_entities(Bottles.primary_grape).distinct().order_by(Bottles.primary_grape.asc())
     countries = Countries.query.with_entities(Countries.country_name).distinct().order_by(Countries.country_name.asc())

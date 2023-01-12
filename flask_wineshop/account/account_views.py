@@ -1,7 +1,8 @@
 from flask import render_template
 from flask_login import login_required, current_user
 
-from flask_wineshop.models import db, Order, Cart
+from flask_wineshop.models import Order, Cart
+from flask_wineshop.extensions import db
 from flask_wineshop.account import bp
 
 

@@ -1,20 +1,12 @@
 from os import environ
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-from flask_login import LoginManager
-from flask_migrate import Migrate
 from flask_assets import Environment
 
 from config import config
+from .extensions import db, migrate, login_manager
 
 
-# instantiate the extensions
-db = SQLAlchemy()
-migrate = Migrate()
-login_manager = LoginManager()
-
-
-def create_app(config_name='production'):
+def create_app(config_name=None):
     if config_name is None:
         config_name = environ.get('FLASK_CONFIG', 'development')
     app = Flask(__name__)
@@ -37,9 +29,6 @@ def create_app(config_name='production'):
 
         from .auth import bp as auth_bp
         app.register_blueprint(auth_bp)
-
-        from .api import bp as api_bp
-        app.register_blueprint(api_bp, url_prefix='/api')
 
         from .cart import bp as cart_bp
         app.register_blueprint(cart_bp)
