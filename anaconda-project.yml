@@ -29,39 +29,38 @@ env_specs:
     packages:
     - anaconda-client
     - anaconda-project
-    - arrow
     - conda-pack
-    - cssmin
+    - cssmin =0.2.0
     - email_validator
-    - flask
-    - flask-assets
+    - flask ==2.2.2
+    - flask-assets ==2.0
     - flask-babelex
     - flask-caching
-    - flask-login
-    - flask-migrate
-    - flask-paginate
+    - flask-login ==0.6.2
+    - flask-migrate ==4.0.1
+    - flask-paginate ==2022.1.8 
     - flask-rest-jsonapi
     - flask-script
     - flask-security
-    - flask-sqlalchemy
-    - flask-wtf
+    - flask-sqlalchemy ==3.0.2
+    - flask-wtf ==1.0.1 
     - git
-    - jinja2
-    - jsmin
+    - jinja2 ==3.1.2
+    - jsmin ==3.0.1
     - json5
     - jsonschema
     - jupyterlab
     - marshmallow-jsonapi
     - pip
-    - psycopg2
-    - python
-    - python-dotenv
-    - redis-py
+    - psycopg2 ==2.9.2
+    - python ==3.10.8
+    - python-dotenv ==0.21.0
+    - redis-py ==4.4.1
     - sqlalchemy-utils
     - testbook
     - validators
-    - Werkzeug
-    - wtforms
+    - werkzeug ==2.2.2
+    - wtforms ==3.0.1
     - wtforms-components
     - pip:
-      - Flask-Session
+      - Flask-Session ==0.4.0
