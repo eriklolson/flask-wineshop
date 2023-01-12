@@ -130,3 +130,6 @@ migrations/
 re
 sys
 flask-wineshop.sock
+
+# Other
+projectFilesBackup/
