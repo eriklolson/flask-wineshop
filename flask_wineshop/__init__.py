@@ -14,7 +14,7 @@ migrate = Migrate()
 login_manager = LoginManager()
 
 
-def create_app(config_name=None):
+def create_app(config_name='production'):
     if config_name is None:
         config_name = environ.get('FLASK_CONFIG', 'development')
     app = Flask(__name__)

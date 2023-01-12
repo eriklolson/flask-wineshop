@@ -33,7 +33,7 @@ env_specs:
     - conda-pack
     - cssmin
     - email_validator
-    - flask == 2.1.2
+    - flask
     - flask-assets
     - flask-babelex
     - flask-caching
@@ -46,7 +46,6 @@ env_specs:
     - flask-sqlalchemy
     - flask-wtf
     - git
-    - gitflow
     - jinja2
     - jsmin
     - json5
@@ -54,17 +53,15 @@ env_specs:
     - jupyterlab
     - marshmallow-jsonapi
     - pip
-    - psycopg2 >= 2.8.6
-    - python == 3.9.7
+    - psycopg2
+    - python
     - python-dotenv
     - redis-py
     - sqlalchemy-utils
     - testbook
     - validators
-    - Werkzeug == 2.1.2
+    - Werkzeug
     - wtforms
-    - wtforms-alchemy
     - wtforms-components
     - pip:
       - Flask-Session
-
