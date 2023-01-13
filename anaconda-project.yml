@@ -1,6 +1,5 @@
 name: flask-wineshop
 description: A Flask Python web application that creates a mock e-commerce website.
-
 commands:
   flask:
     description: run Flask app
@@ -8,8 +7,6 @@ commands:
     windows: python %PROJECT_DIR%\wsgi.py
     supports_http_options: true
     env_spec: default
-
-
 channels:
 - conda-forge
 - defaults
@@ -38,13 +35,14 @@ env_specs:
     - flask-caching
     - flask-login ==0.6.2
     - flask-migrate ==4.0.1
-    - flask-paginate ==2022.1.8 
+    - flask-paginate ==2022.1.8
     - flask-rest-jsonapi
     - flask-script
     - flask-security
     - flask-sqlalchemy ==3.0.2
-    - flask-wtf ==1.0.1 
+    - flask-wtf ==1.0.1
     - git
+    - gunicorn
     - jinja2 ==3.1.2
     - jsmin ==3.0.1
     - json5
@@ -64,3 +62,4 @@ env_specs:
     - wtforms-components
     - pip:
       - Flask-Session ==0.4.0
+
