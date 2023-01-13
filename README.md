@@ -31,11 +31,9 @@ Logged-in Users
 * WTForms & Flask_wtf
 * Redis
 * Flask-Migrate
-* marshmallow & marshmallow_jsonapi
 * werkzeug.security
 * Flask-Login
 * Flask-paginate
-* Flask-REST-JSONAPI
 
 ## Live Instance
 
