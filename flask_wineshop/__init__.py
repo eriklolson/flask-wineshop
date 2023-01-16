@@ -3,7 +3,7 @@ from flask import Flask
 from flask_assets import Environment
 
 from config import config
-from .extensions import db, migrate, login_manager
+from .extensions import db, login_manager, migrate
 
 
 def create_app(config_name=None):
@@ -12,7 +12,6 @@ def create_app(config_name=None):
     app = Flask(__name__)
     app.config.from_object(config[config_name])
 
-    # set up extensions
     assets = Environment()
     assets.init_app(app)
     login_manager.init_app(app)
@@ -20,9 +19,8 @@ def create_app(config_name=None):
     migrate.init_app(app, db)
 
     with app.app_context():
-        # Import parts of application
+        # import parts of application
         from flask_wineshop.assets import compile_static_assets
-        db.create_all()  # Create sql tables for our data models
 
         from .account import bp as account_bp
         app.register_blueprint(account_bp)
@@ -39,7 +37,7 @@ def create_app(config_name=None):
         from .products import bp as products_bp
         app.register_blueprint(products_bp)
 
-        # Create Database Models
+        # create Database Models
         db.create_all()
         compile_static_assets(assets)
 

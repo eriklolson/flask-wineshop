@@ -1,41 +1,26 @@
 from flask_wtf import FlaskForm
-from datetime import datetime
-from wtforms import Form, IntegerField, HiddenField, StringField, PasswordField, BooleanField, SubmitField, TextAreaField, RadioField
-from wtforms.validators import ValidationError, DataRequired, Length, InputRequired, Email, EqualTo, Regexp
-from flask_login import login_user, current_user, logout_user, login_required
-
-from flask_wineshop.models import *
+from wtforms import StringField, PasswordField, SubmitField
+from wtforms.validators import DataRequired, Length, Email, EqualTo
 
 
 class LoginForm(FlaskForm):
-    username = StringField('Username', validators=[DataRequired()])
-    password = PasswordField('Password', validators=[DataRequired(), Length(4)])
+    username = StringField('Username', validators=[
+            DataRequired(), Length(min=4, max=20, message='Username must be between 4 and 20 characters long.')])
+    password = PasswordField('Password', validators=[
+            DataRequired(), Length(min=8, max=80, message='Password must be between 8 and 80 characters long.')])
     submit = SubmitField('Sign In')
 
 
 class SignupForm(FlaskForm):
-    username = StringField('Username', [DataRequired()])
+    username = StringField('Username', validators=[
+            DataRequired(),
+            Length(min=4, max=20, message='Username must be between 4 and 20 characters long.')])
     email = StringField('Email', validators=[
-                Length(min=4), Email(message='Enter a valid email.'), DataRequired()])
+            DataRequired(),
+            Email(message='Please enter a valid email.'), Length(max=50)])
     password = PasswordField('Password', validators=[
-                DataRequired(), Length(min=4, message='Please select a stronger password.')])
-    confirmPassword = PasswordField('Confirm Your Password', validators=[
-                DataRequired(), EqualTo('password', message='Passwords must match.')])
+            DataRequired(),
+            Length(min=8, max=80, message='Please select a password between 8 and 80 characters.')])
+    confirmPassword = PasswordField('Confirm Password', validators=[
+            DataRequired(), EqualTo('password', message='Passwords must match.')])
     submit = SubmitField('Register')
-
-    def validate_username(self, username):
-        user = User.query.filter_by(username=username.data).first()
-        if user is not None:
-            raise ValidationError('This username is already registered.')
-
-    def validate_email(self, email):
-        user = User.query.filter_by(email=email.data).first()
-        if user is not None:
-            raise ValidationError('This email is already registered.')
-
-class EditUserForm(Form):
-    username = StringField('username : ', validators=[DataRequired(), Regexp('[A-Za-z ]',
-                                                                             message="Name can only contain letters.")])
-    email = StringField('Email ID : ', validators=[DataRequired(), Length(5, 120), Email()])
-    password = PasswordField('Password : ', validators=[DataRequired(), EqualTo('confirmPassword',                                                                         message="Passwords must match.")])
-    confirmPassword = PasswordField('Confirm Password : ', validators=[DataRequired()])

@@ -1,7 +1,6 @@
 """Routes for shopping cart and order"""
 from flask import abort, request, render_template, redirect, url_for, flash
 from flask_login import login_required, current_user
-from sqlalchemy import desc
 from datetime import datetime
 
 from flask_wineshop.extensions import db

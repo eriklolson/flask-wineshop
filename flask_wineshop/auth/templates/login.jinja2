@@ -13,27 +13,30 @@
         <div class="w-full mt-4 sm:max-w-md p-5 mx-auto">
 
             <h2 class="mb-12 text-center text-5xl font-extrabold">Sign In</h2>
-            <form action="{{ url_for('auth.login') }}" method="POST" autocomplete="off">
+
+            <form action="{{ url_for('auth.login') }}" method="POST" autocomplete="off" novalidate>
                 {{ form.hidden_tag() }}
 
-                <fieldset class="username">
-                    {{ form.username.label(class="text-black") }}
-                    {{ form.username(placeholder='John Smith') }}
+                <fieldset class="username mb-8">
+                    {{ form.username.label(class="font-black text-3xl") }}
+                    {{ form.username(class="border-gray-900 py-1 rounded-md") }}
                     {% if form.username.errors %}
-                        <ul class="errors">
+                        <ul class="errors font-black mt-2">
                             {% for error in form.username.errors %}
-                                <li><strong>Error:</strong> {{ error }}{{ error }}</li>
+                                <li>{{ error }}</li>
                             {% endfor %}
                         </ul>
                     {% endif %}
                 </fieldset>
+
                 <fieldset class="password">
-                    {{ form.password.label(class="text-black") }}
-                    {{ form.password }}
+                    {{ form.password.label(class="font-black text-3xl") }}
+                    {{ form.password(class="border-gray-900 py-1 rounded-md") }}
                     {% if form.password.errors %}
-                        <ul class="errors">
+                        <ul class="errors font-black mt-2">
                             {% for error in form.password.errors %}
-                                <li>{{ error }}</li>{% endfor %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
                         </ul>
                     {% endif %}
                 </fieldset>

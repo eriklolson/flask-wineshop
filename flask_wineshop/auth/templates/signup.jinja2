@@ -9,7 +9,6 @@
 {% block content %}
 
     <section class="container w-11/12 h-screen flex text-white ">
-        {#    <section class=" flex items-stretch text-white ">#}
         <div class="lg:flex w-1/2 hidden bg-gray-500 bg-no-repeat bg-cover relative items-center"
              style="background-image: url(https://www.homestratosphere.com/wp-content/uploads/2018/03/header-image-types-of-wine-glasses-032218-e1521724010154.jpg);">
             <div class="absolute  opacity-60 inset-0 z-0"></div>
@@ -30,15 +29,15 @@
                 <h2 class="my-16 font-black text-4xl text-white lg:text-black inline-block">
                     Register your account today
                 </h2>
-                <form action="{{ url_for('auth.signup') }}" method="POST" autocomplete="off"
-                      class="sm:w-2/3 w-full px-4 lg:px-0 mx-auto gid-span">
+                <form action="{{ url_for('auth.signup') }}" method="POST" autocomplete="off" novalidate
+                      class="sm:w-2/3 flex flex-col space-y-6  px-4 lg:px-0 mx-auto gid-span">
                     {{ form.csrf_token }}
 
                         <fieldset class="name text-black mb-4">
-                            {{ form.username.label(class="font-black") }}
-                            {{ form.username(placeholder='John Smith') }}
+                            {{ form.username.label(class="font-black text-2xl") }}
+                            {{ form.username(class="border-gray-900 py-1 rounded-md") }}
                             {% if form.username.errors %}
-                                <ul class="errors">
+                                <ul class="errors font-black mt-2">
                                     {% for error in form.username.errors %}
                                         <li>{{ error }}</li>{% endfor %}
                                 </ul>
@@ -46,10 +45,10 @@
                         </fieldset>
 
                     <fieldset class="email text-black mb-4">
-                        {{ form.email.label(class="font-black") }}
-                        {{ form.email(placeholder='youremail@example.com') }}
+                        {{ form.email.label(class="font-black text-2xl") }}
+                        {{ form.email(class="border-gray-900 py-1 rounded-md") }}
                         {% if form.email.errors %}
-                            <ul class="errors">
+                            <ul class="errors font-black mt-2">
                                 {% for error in form.email.errors %}
                                     <li>{{ error }}</li>{% endfor %}
                             </ul>
@@ -57,10 +56,10 @@
                     </fieldset>
 
                     <fieldset class="password text-black">
-                        {{ form.password.label(class="font-black") }}
-                        {{ form.password }}
+                        {{ form.password.label(class="font-black text-2xl") }}
+                        {{ form.password(class="border-gray-900 py-1 rounded-md") }}
                         {% if form.password.errors %}
-                            <ul class="errors">
+                            <ul class="errors font-black mt-2">
                                 {% for error in form.password.errors %}
                                     <li>{{ error }}</li>{% endfor %}
                             </ul>
@@ -68,16 +67,16 @@
                     </fieldset>
 
                     <fieldset class="confirmPassword text-black">
-                        {{ form.confirmPassword.label(class="font-black") }}
-                        {{ form.confirmPassword }}
+                        {{ form.confirmPassword.label(class="font-black text-2xl") }}
+                        {{ form.confirmPassword(class="border-gray-900 py-1 rounded-md") }}
                         {% if form.confirmPassword.errors %}
-                            <ul class="errors">
+                            <ul class="errors font-black mt-2">
                                 {% for error in form.confirmPassword.errors %}
                                     <li>{{ error }}</li>{% endfor %}
                             </ul>
                         {% endif %}
                     </fieldset>
-                    <div class="mt-6">
+                    <div class="pt-6">
                         {% include '_button-submit.jinja2' %}
                     </div>
                 </form>
