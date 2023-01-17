@@ -1,13 +1,3 @@
-//Javascript to toggle the menu
-// const button = document.querySelector('#nav-toggle');
-// const menu = document.querySelector('#nav-mobile');
-//
-//
-// button.addEventListener('click', () => {
-//   menu.classList.toggle('hidden');
-// });
-
-
 const mobile_icon = document.getElementById('mobile-icon');
 const mobile_menu = document.getElementById('mobile-menu');
 const hamburger_icon = document.querySelector("#mobile-icon i");

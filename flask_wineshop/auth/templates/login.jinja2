@@ -12,7 +12,7 @@
     <div class="w-full   flex flex-col sm:justify-center items-center justify-center  mt-10 sm:pt-0">
         <div class="w-full mt-4 sm:max-w-md p-5 mx-auto">
 
-            <h2 class="mb-12 text-center text-5xl font-extrabold">Sign In</h2>
+            <h2 class="page-title mb-12 text-center text-5xl text-gray-800 font-semibold">Sign In</h2>
 
             <form action="{{ url_for('auth.login') }}" method="POST" autocomplete="off" novalidate>
                 {{ form.hidden_tag() }}

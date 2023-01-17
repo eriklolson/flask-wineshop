@@ -1,21 +1,6 @@
 @use '../../../static/src/scss/themes.scss';
 @use '../../../static/src/scss/typography.scss';
-@use '../../../static/src/scss/properties.scss';
 
-// Font Variables
-$playfair: 'Playfair Display', serif;
-$roboto: 'Roboto Slab', sans-serif;
-
-// Theme colors
-$mid-gray: #5e5850;
-$dark-gray: #3e3a35;
-$light-gray: #e9e9e7;
-$red: #972f1b;
-
-/* hidden on mobile/smaller screens */
-//@media screen and (max-width: 768px) {
-//    [x-cloak="mobile"] { display: none; }
-//}
 
 @media only screen and (max-width: 600px) {
   .modal {
@@ -31,10 +16,5 @@ $red: #972f1b;
   #title {
     font-family: typography.$playfair;
   }
-}
-
-/* Modal Content */
-.modal-content {
-
 }
 

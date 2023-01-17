@@ -1,87 +1,85 @@
-<footer class="shrink-0 inset-x-0 bottom-0 pt-7 dark:bg-gray-800 dark:text-gray-50 text-white">
-    <div class="container w-11/12 px-6 mx-auto space-y-6 divide-y divide-gray-400 md:space-y-12 divide-opacity-50">
-
-        <!-- Main Column -->
-        <div class="grid grid-cols-12">
-            <!-- Blurb -->
-            <div class="hidden md:block pt-2 col-span-full md:pb-0 md:col-span-6 px-6">
-                <a rel="noopener noreferrer" href="#" class="flex justify-center space-x-3 md:justify-start">
-                    <div class="flex items-center justify-center w-12 h-12 rounded-full dark:bg-violet-400">
-                        <img  src="{{ url_for('static', filename='svg/bottleandglass.svg') }}"
+<footer class="inset-x-0 py-6 z-0 text-white dark:bg-gray-800 dark:text-gray-50">
+    <div class="container w-11/12 divide-y divide-gray-400 pt-2 divide-opacity-50">
+        <div class="grid grid-cols-6 justify-between py-8">
+            <div class="col-span-3 ml-4 hidden md:block">
+                <a rel="noopener noreferrer" href="{{ url_for('home.index') }}" class="flex space-x-3 md:justify-start">
+                    <div class="flex h-12 w-12 items-center justify-center rounded-full dark:bg-violet-400">
+                        <img src="{{ url_for('static', filename='svg/bottleandglass.svg') }}"
                              class="filter-white inline mr-2 w-10"
                              alt="logo"/>
                     </div>
                     <span class="self-center uppercase text-2xl font-semibold">Flask Wineshop</span>
                 </a>
-                <p class="text-xl mt-4">This is an example of an e-commerce web-app using python-flask. All products are for demonstration purposes only.
+                <p class="text-2xl mt-4">This is a mock eCommerce website created with my web-app
+                    <u><a class="hover:text-[#ca6f1e]" href="https://github.com/eriklolson/flask-wineshop">flask-wineshop</a></u>.
+                    For demonstration purposes only.
                 </p>
             </div>
-            <!-- Blurb END/ -->
             <!-- First link column -->
-            <div class="col-span-6 ml-16 md:col-span-3 py-2 px-6">
-                <p class="pb-1 text-lg uppercase font-bold">Site Links</p>
-                <ul id="first">
+            <div class="col-span-2 flex md:col-span-1">
+                <ul class="ml-auto space-y-4 text-[13px]">
+                    <li class="col-span-2 text-md uppercase uppercase font-bold">Account</li>
                     <li>
                         <a rel="noopener noreferrer" href="{{ url_for('auth.logout') }}"
-                           class="text-2xl">Logout</a>
+                           class="hover:text-yellow-500">Logout</a>
                     </li>
                     <li>
-                        <a rel="noopener noreferrer"
-                           href="{{ url_for('account.profile', username=current_user.username) }}"
-                           class="text-2xl">Profile</a>
+                        <a href="{{ url_for('account.profile', username=current_user.username) }}"
+                           rel="noopener noreferrer" class="hover:text-yellow-500">Profile</a>
                     </li>
                     <li>
                         <a rel="noopener noreferrer"
                            href="{{ url_for('account.transactions', username=current_user.username) }}"
-                           class="text-2xl">Orders</a>
-                    </li>
-                    <li>
-                        <a rel="noopener noreferrer" href="{{ url_for('products.wine') }}"
-                           class="text-2xl">Shop</a>
-                    </li>
-                    <li>
-                        <a rel="noopener noreferrer" href="{{ url_for('cart.cart', user_id=current_user.id) }}"
-                           class="text-2xl">Cart</a>
+                           class="hover:text-yellow-500">Orders</a>
                     </li>
                 </ul>
             </div>
-            <!-- First link column  END/-->
-            <!-- Second link column -->
-            <div class="col-span-6 ml-16 md:col-span-2 py-2 px-6">
-                <p class="pb-1 text-lg uppercase font-bold">Project Links</p>
-                <ul id="second">
+            <div class="col-span-2 flex md:col-span-1">
+                <ul class="mx-auto space-y-4 text-[13px]">
+                    <li class="text-md uppercase uppercase font-bold">Site</li>
+                    <li>
+                        <a rel="noopener noreferrer" href="{{ url_for('products.wine') }}"
+                           class="hover:text-yellow-500">Shop</a>
+                    </li>
+                    <li>
+                        <a rel="noopener noreferrer" ref="{{ url_for('cart.cart', user_id=current_user.id) }}"
+                           class="hover:text-yellow-500">Cart</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-span-2 flex md:col-span-1">
+                <ul class="mr-auto space-y-4 text-[13px]">
+                    <li class="text-md uppercase font-bold">Project</li>
                     <li>
                         <a rel="noopener noreferrer" href="https://github.com/eriklolson/flask-wineshop"
-                           class="text-2xl">GitHub</a>
+                           class="hover:text-yellow-500">GitHub</a>
+                    </li>
+                    <li>
+                        <a rel="noopener noreferrer"
+                           href="https://bitbucket.org/cobrasolutions/"
+                           class="hover:text-yellow-500">Bitbucket</a>
                     </li>
                 </ul>
             </div>
         </div>
-        <!-- Second link column END/-->
-
-        <!-- Bottom row -->
+         <!-- Bottom row -->
         <div class="grid justify-center py-2 lg:justify-between">
             <div class="flex flex-col self-center pl-8 text-sm text-center md:block lg:col-start-1 md:space-x-6">
                 <span>©2022 All rights reserved.</span>
             </div>
             <div class="flex space-x-4 align-center pt-4 pr-8 lg:pt-0 lg:col-end-13">
-                <a rel="noopener noreferrer" href="#" title="Email"
+                <a rel="noopener noreferrer" href="https://bitbucket.org/cobrasolutions/"
                    class="flex items-center justify-center w-10 h-10 rounded-full dark:bg-violet-400 dark:text-gray-900">
-                    <img src="{{ url_for('static', filename='svg/facebook.svg') }}" class="filter-white w-5 h-5"
-                         alt="facebook icon"/>
+                    <img src="{{ url_for('static', filename='svg/bitbucket.svg') }}" class="filter-white w-5 h-5 "
+                         alt="bitbucket icon"/>
                 </a>
-                <a rel="noopener noreferrer" href="#" title="Twitter"
+                <a rel="noopener noreferrer" href="https://github.com/eriklolson/"
                    class="flex items-center justify-center w-10 h-10 rounded-full dark:bg-violet-400 dark:text-gray-900">
-                    <img src="{{ url_for('static', filename='svg/instagram.svg') }}" class="filter-white w-5 h-5 "
-                         alt="instagram icon"/>
-                </a>
-                <a rel="noopener noreferrer" href="#" title="GitHub"
-                   class="flex items-center justify-center w-10 h-10 rounded-full dark:bg-violet-400 dark:text-gray-900">
-                    <img src="{{ url_for('static', filename='svg/twitter.svg') }}"
+                    <img src="{{ url_for('static', filename='svg/github.svg') }}"
                          class="filter-white w-5 h-5 text-2xl"
-                         alt="twitter icon"/>
+                         alt="github icon"/>
                 </a>
-                <a rel="noopener noreferrer" href="#" title="GitHub"
+                <a rel="noopener noreferrer"  href="https://www.linkedin.com/in/erik-olson-9b6bb7191"
                    class="flex items-center justify-center w-10 h-10 rounded-full dark:bg-violet-400 dark:text-gray-900">
                     <img src="{{ url_for('static', filename='svg/linkedin.svg') }}"
                          class="filter-white w-5 h-5"
@@ -92,3 +90,4 @@
     </div>
     <!-- Bottom row END/ -->
 </footer>
+

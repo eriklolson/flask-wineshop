@@ -1,7 +1,5 @@
 @use './themes.scss';
 @use './typography.scss';
-@use './properties.scss';
-
 
 
 /******** General variables ********/
@@ -9,18 +7,6 @@
 
 .filter-white {
   filter: invert(99%) sepia(86%) saturate(0%) hue-rotate(40deg) brightness(111%) contrast(101%);
-}
-
-
-@mixin selection {
-  color: themes.$red;
-  text-decoration: none;
-  transition: color .3s;
-  background: transparent;
-}
-
-a {
-  @include selection;
 }
 
 ///******** Mobile Menu ********/
@@ -93,7 +79,7 @@ header {
           padding: 15px 14px;
 
           &:hover {
-            color: themes.$orange;
+            color: themes.$mustard;
           }
         }
 
@@ -107,7 +93,7 @@ header {
           }
 
           &:hover {
-            color: themes.$orange;
+            color: themes.$mustard;
           }
 
           li {
@@ -115,7 +101,7 @@ header {
               background: themes.$dark-gray;
 
               &:hover {
-                color: themes.$orange;
+                color: themes.$mustard;
               }
             }
           }
@@ -126,7 +112,6 @@ header {
 }
 
 /********** Flash Messages ************/
-
 .success {
   background-color: #BBF7D0;
 }
@@ -137,36 +122,4 @@ header {
 .notice {
   background-color: #64748B;
   color: white;
-}
-
-/********** Site footer ************/
-footer {
-  background-color: themes.$gray;
-
- #first {
-    columns: 2;
-    -webkit-columns: 2;
-    -moz-columns: 2;
-
-    a {
-      color: white;
-
-      &:hover {
-        color: themes.$orange;
-      }
-    }
-  }
-   #second {
-    columns: 2;
-    -webkit-columns: 2;
-    -moz-columns: 2;
-
-    a {
-      color: white;
-
-      &:hover {
-        color: themes.$orange;
-      }
-    }
-  }
 }
