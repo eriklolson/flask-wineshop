@@ -1,19 +1,26 @@
-# Full-Stack E-commerce Project
-
-## Objectives
-My goal was to make a full e-commerce website.  To accomplish this, I created a wine merchant website. Although a wine merchant has unique product offerings, there are functionalities that are common to many e-commerce webites. These include the following:
+# Full-Stack eCommerce Project: flask-wineshop
+## Objective
+To achieve my goal of creating my first an eCommerce website, I made two applications: 
+the web-app, flask-wineshop, that produces the eCommerce website and the web-scraper, 
+[python-wine-scraper](https://github.com/eriklolson/python-wine-scraper), that supplies 
+the back-end database with mock wine products. This is the repository for the former. Although a wine merchant has unique
+product offerings, there are functionalities that are common to many eCommerce websites. This includes:
 
 Public Users
 * View products
 * Flash messages for user feedback
 * Filter products by categories
+* View 'excursions' page
 
 Logged-in Users
-* Add and remove products to shopping cart
-* Update quantity of product(s) in cart
-* Place orders via checkout
-* View order history
-* View user profile
+* Shopping Cart
+* Commit orders
+* View orders history
+* View account info page
+
+## Live Instance
+
+https://www.flaskwineshop.com
 
 ## Technologies Used Include:
 * Python
@@ -22,20 +29,16 @@ Logged-in Users
 * HTML
 * SCSS
 * TailwindCSS
+* Blueprint
 * Anaconda Project
 * AlpineJS
 * JavaScript
 * jQuery
-* Postgres
-* SQLAlchemy
+* PostgreSQL
+* Flask-SQLAlchemy
+* Flask-Migrate
 * WTForms & Flask_wtf
 * Redis
-* Flask-Migrate
-* werkzeug.security
+* Werkzeug.security
 * Flask-Login
 * Flask-paginate
-
-## Live Instance
-
-https://www.flaskwineshop.com
-
