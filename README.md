@@ -1,7 +1,7 @@
 # Full-Stack eCommerce Project: flask-wineshop
 ## Objective
 To create my first eCommerce website, I made two applications: 
-the web app—flask-wineshop—that produces the eCommerce website and the web scraper,
+the web app—flask-wineshop—that produces the eCommerce website and the web scraper—
 [python-wine-scraper](https://github.com/eriklolson/python-wine-scraper)—that supplies the back-end database with mock
 wine products. Although a wine merchant has unique product offerings, there are functionalities that are common to many 
 eCommerce websites. This includes:
